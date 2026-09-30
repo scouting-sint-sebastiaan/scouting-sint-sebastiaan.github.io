@@ -44,7 +44,7 @@ const groepen = [lijst('Bestuursleden', d.bestuur), lijst('Overig', d.overig)].f
       {groepen.map((g) => (
         <>
           <h2>{g.titel}</h2>
-          <table>
+          <table class="mensen">
             <tbody>
               {g.mensen.map((m) => (
                 <tr>

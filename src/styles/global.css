@@ -53,6 +53,10 @@ main { min-height: 60vh; }
 
 @media (max-width: 52rem) {
   .kop { position: relative; }
+  .kop-in { flex-wrap: wrap; padding-top: .5rem; padding-bottom: .5rem; }
+  .logo { flex: 1; min-width: 0; font-size: 1.05rem; }
+  .logo img { width: 42px; height: 42px; }
+  .menu-knop { flex: none; }
   .menu-knop { display: block; padding: .45rem 1rem; border: 2px solid var(--groen-donker); border-radius: 2rem; cursor: pointer; font-weight: 700; color: var(--groen-donker); box-shadow: 2px 2px 0 var(--groen-donker); }
   .menu { display: none; width: 100%; padding-bottom: 1rem; }
   .menu-toggle:checked ~ .menu { display: block; }
@@ -110,10 +114,20 @@ main { min-height: 60vh; }
 table { border-collapse: collapse; margin: 1rem 0; }
 th, td { text-align: left; padding: .5rem 1rem .5rem 0; border-bottom: 2px dotted var(--lijn); }
 td { white-space: nowrap; }
-@media (max-width: 40rem) { table { display: block; overflow-x: auto; } }
-dl.feiten { display: grid; grid-template-columns: max-content 1fr; gap: .35rem 1.2rem; background: #fffdf7; border: 2px solid var(--groen-donker); border-left: 10px solid var(--kleur, var(--groen)); padding: 1rem 1.2rem; border-radius: .8rem; box-shadow: var(--schaduw); margin: 1.2rem 0 1.6rem; }
+@media (max-width: 40rem) {
+  .mensen, .mensen tbody, .mensen tr, .mensen th, .mensen td { display: block; }
+  .mensen tr { padding: .7rem 0; border-bottom: 2px dotted var(--lijn); }
+  .mensen th, .mensen td { border: 0; padding: 0; white-space: normal; overflow-wrap: anywhere; }
+  .mensen th { color: var(--groen-donker); font-family: var(--kopfont); font-size: 1.05rem; }
+  .mensen td:empty { display: none; }
+}
+dl.feiten { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .35rem 1.2rem; background: #fffdf7; border: 2px solid var(--groen-donker); border-left: 10px solid var(--kleur, var(--groen)); padding: 1rem 1.2rem; border-radius: .8rem; box-shadow: var(--schaduw); margin: 1.2rem 0 1.6rem; }
 dl.feiten dt { font-weight: 700; }
-dl.feiten dd { margin: 0; }
+dl.feiten dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 40rem) {
+  dl.feiten { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  dl.feiten dd { margin-bottom: .6rem; }
+}
 .agenda-lijst { list-style: none; padding: 0; }
 .agenda-lijst li { border-bottom: 2px dotted var(--lijn); padding: .8rem 0; }
 .agenda-lijst strong { display: block; font-family: var(--kopfont); font-size: 1.1rem; color: var(--groen-donker); }
