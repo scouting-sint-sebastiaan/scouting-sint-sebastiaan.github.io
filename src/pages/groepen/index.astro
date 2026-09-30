@@ -12,8 +12,9 @@ const speltakken = (await getCollection('speltakken')).sort((a, b) => a.data.ord
       <p>Scouting is er voor alle leeftijden. Op zaterdag staat de deur voor iedereen open, kom gerust eens kijken.</p>
       <ul class="kaarten">
         {speltakken.map((s) => (
-          <li class="kaart">
+          <li class="kaart speltak" data-speltak={s.id}>
             <a class="stretch" href={`/groepen/${s.id}/`}>
+              <span class="badge" aria-hidden="true">{s.data.title[0]}</span>
               <h3>{s.data.title}</h3>
               <p>{s.data.leeftijd}</p>
               {s.data.draaitijd && <p>{s.data.draaitijd}</p>}
