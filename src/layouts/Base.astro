@@ -27,6 +27,7 @@ const actief = (href: string) => (href === '/' ? pad === '/' : pad.startsWith(hr
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     {description && <meta name="description" content={description} />}
+    {import.meta.env.PUBLIC_NOINDEX && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/uploads/logo-basje.png" />
   </head>
   <body>

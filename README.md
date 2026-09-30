@@ -5,7 +5,7 @@ Gehost gratis op Cloudflare Pages; de inhoud staat als Markdown-bestanden in dez
 
 ## Eenmalige inrichting (voor de beheerder)
 
-1. **GitHub-repo**: `scouting-sint-sebastiaan/website` (organisatie `scouting-sint-sebastiaan`, eigenaar `petervv1`). Push deze map daarheen; `repo:` in `public/admin/config.yml` staat al goed.
+1. **GitHub-repo**: `scouting-sint-sebastiaan/scouting-sint-sebastiaan.github.io` (organisatie `scouting-sint-sebastiaan`, eigenaar `petervv1`). Push deze map daarheen; `repo:` in `public/admin/config.yml` staat al goed.
 2. **Cloudflare Pages** koppelen aan de repo:
    - Build command: `npm run build`
    - Output directory: `dist`
