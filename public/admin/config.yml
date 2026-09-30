@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: BEDRIJF/scouting-website # TODO: <github-account>/<repo>
+  repo: scouting-sint-sebastiaan/website
   branch: main
   # TODO: URL van de OAuth-worker (zie README) zodat vrijwilligers kunnen inloggen met GitHub
   # base_url: https://scouting-cms-auth.<account>.workers.dev
