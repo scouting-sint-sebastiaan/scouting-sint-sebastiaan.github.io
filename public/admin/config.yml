@@ -1,0 +1,137 @@
+backend:
+  name: github
+  repo: BEDRIJF/scouting-website # TODO: <github-account>/<repo>
+  branch: main
+  # TODO: URL van de OAuth-worker (zie README) zodat vrijwilligers kunnen inloggen met GitHub
+  # base_url: https://scouting-cms-auth.<account>.workers.dev
+
+site_url: https://www.scoutingsintsebastiaan.nl
+display_url: https://www.scoutingsintsebastiaan.nl
+logo_url: /uploads/logo-basje.png
+locale: nl
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: nieuws
+    label: Nieuws
+    label_singular: Nieuwsbericht
+    folder: src/content/nieuws
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date}} - {{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Titel, widget: string }
+      - { name: date, label: Datum, widget: datetime, time_format: false, date_format: "DD-MM-YYYY", format: "YYYY-MM-DD" }
+      - { name: samenvatting, label: Korte samenvatting (voor het overzicht), widget: text, required: false }
+      - { name: image, label: Foto, widget: image, required: false }
+      - { name: body, label: Tekst, widget: markdown }
+
+  - name: agenda
+    label: Agenda
+    label_singular: Activiteit
+    folder: src/content/agenda
+    create: true
+    summary: "{{date}} - {{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Naam van de activiteit, widget: string }
+      - { name: date, label: Datum, widget: datetime, time_format: false, date_format: "DD-MM-YYYY", format: "YYYY-MM-DD" }
+      - { name: tijd, label: Tijd (bijvoorbeeld 14:00 - 17:00), widget: string, required: false }
+      - { name: locatie, label: Locatie, widget: string, required: false }
+      - { name: wie, label: Voor wie (bijvoorbeeld Welpen), widget: string, required: false }
+      - { name: body, label: Meer informatie, widget: markdown, required: false }
+
+  - name: speltakken
+    label: Speltakken
+    label_singular: Speltak
+    folder: src/content/speltakken
+    create: false
+    delete: false
+    fields:
+      - { name: title, label: Naam, widget: string }
+      - { name: order, label: Volgorde in het menu, widget: number, value_type: int, default: 1 }
+      - { name: leeftijd, label: Leeftijd, widget: string }
+      - { name: draaitijd, label: Wanneer (dag en tijd), widget: string, required: false }
+      - { name: staf, label: Leiding, widget: text, required: false }
+      - { name: email, label: E-mailadres van de speltak, widget: string, required: false }
+      - { name: image, label: Foto, widget: image, required: false }
+      - { name: body, label: Tekst, widget: markdown }
+
+  - name: paginas
+    label: Pagina's
+    label_singular: Pagina
+    folder: src/content/paginas
+    create: true
+    fields:
+      - { name: title, label: Titel, widget: string }
+      - name: menu
+        label: In welk menu moet de pagina komen?
+        widget: select
+        default: geen
+        options:
+          - { label: Ontdek onze scouting, value: ontdek }
+          - { label: Lid worden, value: lid-worden }
+          - { label: Niet in het menu, value: geen }
+      - { name: order, label: Volgorde in het menu (klein getal eerst), widget: number, value_type: int, default: 10 }
+      - { name: body, label: Tekst, widget: markdown }
+
+  - name: speciaal
+    label: Contact, contributie en home
+    files:
+      - name: home
+        label: Startpagina (tekst)
+        file: src/content/speciaal/home.md
+        fields:
+          - { name: title, label: Titel, widget: hidden, default: Welkom bij Scouting St. Sebastiaan }
+          - { name: menu, label: Menu, widget: hidden, default: geen }
+          - { name: order, label: Volgorde, widget: hidden, default: 0 }
+          - { name: body, label: Tekst, widget: markdown }
+      - name: contact
+        label: Contact
+        file: src/content/speciaal/contact.md
+        fields:
+          - { name: title, label: Titel, widget: hidden, default: Contact }
+          - { name: menu, label: Menu, widget: hidden, default: geen }
+          - { name: order, label: Volgorde, widget: hidden, default: 0 }
+          - { name: adres, label: Adres, widget: string, required: false }
+          - name: bestuur
+            label: Bestuursleden
+            widget: list
+            required: false
+            summary: "{{fields.functie}}: {{fields.naam}}"
+            fields:
+              - { name: functie, label: Functie, widget: string }
+              - { name: naam, label: Naam, widget: string }
+              - { name: email, label: E-mailadres, widget: string, required: false }
+              - { name: telefoon, label: Telefoon, widget: string, required: false }
+          - name: overig
+            label: Overige contactpersonen
+            widget: list
+            required: false
+            summary: "{{fields.functie}}: {{fields.naam}}"
+            fields:
+              - { name: functie, label: Functie, widget: string }
+              - { name: naam, label: Naam, widget: string }
+              - { name: email, label: E-mailadres, widget: string, required: false }
+              - { name: telefoon, label: Telefoon, widget: string, required: false }
+          - { name: body, label: Tekst, widget: markdown }
+      - name: contributie
+        label: Contributie
+        file: src/content/speciaal/contributie.md
+        fields:
+          - { name: title, label: Titel, widget: hidden, default: Contributie }
+          - { name: menu, label: Menu, widget: hidden, default: lid-worden }
+          - { name: order, label: Volgorde, widget: hidden, default: 2 }
+          - name: tarieven
+            label: Bedragen per kwartaal
+            widget: list
+            summary: "{{fields.speltak}}: {{fields.bedrag}}"
+            fields:
+              - { name: speltak, label: Speltak, widget: string }
+              - { name: bedrag, label: Bedrag (bijvoorbeeld 30,-), widget: string }
+          - { name: iban, label: IBAN, widget: string }
+          - { name: tenaamstelling, label: Ten name van, widget: string }
+          - { name: body, label: Tekst, widget: markdown }

@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const fullTitle = title ? `${title} | ${site.naam}` : site.naam;
+
+const speltakken = (await getCollection('speltakken')).sort((a, b) => a.data.order - b.data.order);
+const paginas = [...(await getCollection('paginas')), ...(await getCollection('speciaal'))].sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const menu = (m: string) => paginas.filter((p) => p.data.menu === m);
+
+const pad = Astro.url.pathname;
+const actief = (href: string) => (href === '/' ? pad === '/' : pad.startsWith(href));
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/uploads/logo-basje.png" />
+  </head>
+  <body>
+    <header class="kop">
+      <div class="wrap kop-in">
+        <a class="logo" href="/">
+          <img src="/uploads/logo-basje.png" alt="" width="50" height="50" />
+          <span>{site.naam}</span>
+        </a>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Menu openen" />
+        <label for="menu-toggle" class="menu-knop">Menu</label>
+        <nav class="menu" aria-label="Hoofdmenu">
+          <ul>
+            <li><a href="/" aria-current={actief('/') ? 'page' : undefined}>Home</a></li>
+            <li class="sub">
+              <a href="/groepen/">Onze groepen</a>
+              <ul>
+                {speltakken.map((s) => <li><a href={`/groepen/${s.id}/`}>{s.data.title}</a></li>)}
+              </ul>
+            </li>
+            <li class="sub">
+              <span tabindex="0">Ontdek onze scouting</span>
+              <ul>
+                {menu('ontdek').map((p) => <li><a href={`/${p.id}/`}>{p.data.title}</a></li>)}
+              </ul>
+            </li>
+            <li class="sub">
+              <span tabindex="0">Lid worden</span>
+              <ul>
+                {menu('lid-worden').map((p) => <li><a href={`/${p.id}/`}>{p.data.title}</a></li>)}
+              </ul>
+            </li>
+            <li><a href="/nieuws/" aria-current={actief('/nieuws/') ? 'page' : undefined}>Nieuws</a></li>
+            <li><a href="/agenda/" aria-current={actief('/agenda/') ? 'page' : undefined}>Agenda</a></li>
+            <li><a href="/contact/" aria-current={actief('/contact/') ? 'page' : undefined}>Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="voet">
+      <div class="wrap voet-in">
+        <div>
+          <strong>{site.naam}</strong><br />
+          {site.adres}<br />
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+        <div class="social">
+          <a href={site.facebook} rel="noopener">Facebook</a>
+          <a href={site.instagram} rel="noopener">Instagram</a>
+        </div>
+        <a href="https://www.scouting.nl" rel="noopener" class="sn">
+          <img src="/uploads/logo-scouting-nederland.png" alt="Scouting Nederland" width="84" height="87" />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

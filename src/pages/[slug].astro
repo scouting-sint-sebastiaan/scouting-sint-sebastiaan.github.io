@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const paginas = [...(await getCollection('paginas')), ...(await getCollection('speciaal'))];
+  return paginas.filter((p) => p.id !== 'home').map((p) => ({ params: { slug: p.id }, props: { pagina: p } }));
+}
+
+const { pagina } = Astro.props;
+const { Content } = await render(pagina);
+const d = pagina.data;
+const lijst = (titel: string, mensen: typeof d.bestuur) =>
+  mensen && mensen.length > 0 ? { titel, mensen } : null;
+const groepen = [lijst('Bestuursleden', d.bestuur), lijst('Overig', d.overig)].filter((g) => g !== null);
+---
+
+<Base title={d.title}>
+  <div class="wrap">
+    <article class="pagina">
+      <h1>{d.title}</h1>
+
+      {d.adres && <p>{d.adres}</p>}
+
+      {d.tarieven && (
+        <>
+          <table>
+            <thead><tr><th>Speltak</th><th>Per kwartaal</th></tr></thead>
+            <tbody>
+              {d.tarieven.map((t) => <tr><td>{t.speltak}</td><td>€ {t.bedrag}</td></tr>)}
+            </tbody>
+          </table>
+          {d.iban && (
+            <p>
+              IBAN: <strong>{d.iban}</strong>
+              {d.tenaamstelling && <> t.n.v. {d.tenaamstelling}</>}
+            </p>
+          )}
+        </>
+      )}
+
+      <div class="inhoud"><Content /></div>
+
+      {groepen.map((g) => (
+        <>
+          <h2>{g.titel}</h2>
+          <table>
+            <tbody>
+              {g.mensen.map((m) => (
+                <tr>
+                  <th>{m.functie}</th>
+                  <td>{m.naam}</td>
+                  <td>{m.email && <a href={`mailto:${m.email}`}>{m.email}</a>}</td>
+                  <td>{m.telefoon}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      ))}
+    </article>
+  </div>
+</Base>

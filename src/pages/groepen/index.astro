@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const speltakken = (await getCollection('speltakken')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title="Onze groepen">
+  <div class="wrap">
+    <div class="pagina breed">
+      <h1>Onze groepen</h1>
+      <p>Scouting is er voor alle leeftijden. Op zaterdag staat de deur voor iedereen open, kom gerust eens kijken.</p>
+      <ul class="kaarten">
+        {speltakken.map((s) => (
+          <li class="kaart">
+            <a class="stretch" href={`/groepen/${s.id}/`}>
+              <h3>{s.data.title}</h3>
+              <p>{s.data.leeftijd}</p>
+              {s.data.draaitijd && <p>{s.data.draaitijd}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,15 @@
+{
+  "name": "scouting-sint-sebastiaan",
+  "type": "module",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview --host",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^7.3.5"
+  }
+}

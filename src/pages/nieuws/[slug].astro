@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { datum } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const nieuws = await getCollection('nieuws');
+  return nieuws.map((n) => ({ params: { slug: n.id }, props: { bericht: n } }));
+}
+
+const { bericht } = Astro.props;
+const { Content } = await render(bericht);
+const d = bericht.data;
+---
+
+<Base title={d.title} description={d.samenvatting}>
+  <div class="wrap">
+    <article class="pagina">
+      <a class="terug" href="/nieuws/">&larr; Alle nieuws</a>
+      <h1>{d.title}</h1>
+      <p class="meta">{datum(d.date)}</p>
+      {d.image && <img src={d.image} alt="" />}
+      <div class="inhoud"><Content /></div>
+    </article>
+  </div>
+</Base>

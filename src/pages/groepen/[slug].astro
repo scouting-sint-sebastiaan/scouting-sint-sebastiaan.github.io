@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const speltakken = await getCollection('speltakken');
+  return speltakken.map((s) => ({ params: { slug: s.id }, props: { speltak: s } }));
+}
+
+const { speltak } = Astro.props;
+const { Content } = await render(speltak);
+const d = speltak.data;
+---
+
+<Base title={d.title}>
+  <div class="wrap">
+    <article class="pagina">
+      <a class="terug" href="/groepen/">&larr; Alle groepen</a>
+      <h1>{d.title}</h1>
+      {d.image && <img src={d.image} alt="" />}
+      <dl class="feiten">
+        <dt>Leeftijd</dt><dd>{d.leeftijd}</dd>
+        {d.draaitijd && <><dt>Wanneer</dt><dd>{d.draaitijd}</dd></>}
+        {d.staf && <><dt>Leiding</dt><dd>{d.staf}</dd></>}
+        {d.email && <><dt>E-mail</dt><dd><a href={`mailto:${d.email}`}>{d.email}</a></dd></>}
+      </dl>
+      <div class="inhoud"><Content /></div>
+    </article>
+  </div>
+</Base>

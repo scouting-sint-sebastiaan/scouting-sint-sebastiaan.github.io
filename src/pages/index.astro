@@ -1,0 +1,79 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { korteDatum, isoDag } from '../lib/format';
+
+const home = await getEntry('speciaal', 'home');
+const { Content } = await render(home!);
+const speltakken = (await getCollection('speltakken')).sort((a, b) => a.data.order - b.data.order);
+const nieuws = (await getCollection('nieuws')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+const vandaag = isoDag(new Date());
+const agenda = (await getCollection('agenda'))
+  .filter((e) => isoDag(e.data.date) >= vandaag)
+  .sort((a, b) => +a.data.date - +b.data.date)
+  .slice(0, 4);
+---
+
+<Base description="Scouting St. Sebastiaan in Strijp, Eindhoven. Bevers, welpen, verkenners, rowans en stam.">
+  <section class="hero" style="background-image: url('/uploads/placeholder-hero.svg')">
+    <div class="wrap hero-in">
+      <h1>Scouting St. Sebastiaan</h1>
+      <p>Scouting in Strijp, Eindhoven, voor kinderen en jongeren vanaf 4½ jaar. Op zaterdag staat de deur voor iedereen open.</p>
+      <a class="knop" href="/informatie/">Lid worden</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="pagina breed">
+      <div class="tweekol">
+        <div class="inhoud"><Content /></div>
+        <div>
+          <h2 style="margin-top:0">Komende activiteiten</h2>
+          {agenda.length === 0 ? (
+            <p class="meta">Er staan nog geen activiteiten gepland.</p>
+          ) : (
+            <ul class="agenda-lijst">
+              {agenda.map((e) => (
+                <li>
+                  <strong>{e.data.title}</strong>
+                  <span class="meta">{korteDatum(e.data.date)}{e.data.tijd && `, ${e.data.tijd}`}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p><a href="/agenda/">Bekijk de hele agenda</a></p>
+        </div>
+      </div>
+
+      <h2>Onze groepen</h2>
+      <ul class="kaarten">
+        {speltakken.map((s) => (
+          <li class="kaart">
+            <a class="stretch" href={`/groepen/${s.id}/`}>
+              <h3>{s.data.title}</h3>
+              <p>{s.data.leeftijd}</p>
+              {s.data.draaitijd && <p>{s.data.draaitijd}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {nieuws.length > 0 && (
+        <>
+          <h2>Nieuws</h2>
+          <ul class="kaarten">
+            {nieuws.map((n) => (
+              <li class="kaart">
+                <a class="stretch" href={`/nieuws/${n.id}/`}>
+                  <h3>{n.data.title}</h3>
+                  <p class="meta">{korteDatum(n.data.date)}</p>
+                  {n.data.samenvatting && <p>{n.data.samenvatting}</p>}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  </div>
+</Base>

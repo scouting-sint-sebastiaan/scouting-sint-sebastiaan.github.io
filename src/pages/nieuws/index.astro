@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { korteDatum } from '../../lib/format';
+
+const nieuws = (await getCollection('nieuws')).sort((a, b) => +b.data.date - +a.data.date);
+---
+
+<Base title="Nieuws">
+  <div class="wrap">
+    <div class="pagina breed">
+      <h1>Nieuws</h1>
+      {nieuws.length === 0 && <p class="meta">Er is nog geen nieuws.</p>}
+      <ul class="kaarten">
+        {nieuws.map((n) => (
+          <li class="kaart">
+            <a class="stretch" href={`/nieuws/${n.id}/`}>
+              {n.data.image && <img src={n.data.image} alt="" loading="lazy" />}
+              <h3>{n.data.title}</h3>
+              <p class="meta">{korteDatum(n.data.date)}</p>
+              {n.data.samenvatting && <p>{n.data.samenvatting}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Base>
