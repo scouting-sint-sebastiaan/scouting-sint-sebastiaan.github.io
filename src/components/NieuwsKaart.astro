@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { korteDatum } from '../lib/format';
+
+interface Props {
+  bericht: CollectionEntry<'nieuws'>;
+}
+const { bericht } = Astro.props;
+const d = bericht.data;
+const beeld = d.image ?? '/tc4/nieuws.jpg';
+---
+
+<li>
+  <a href={`/nieuws/${bericht.id}/`}>
+    <div class="titel">
+      <div class="beeld" style={`background-image: url('${beeld}')`}>
+        <span class="datum">{korteDatum(d.date)}</span>
+      </div>
+      <h3>{d.title}</h3>
+    </div>
+    {d.samenvatting && <p class="tekst">{d.samenvatting}</p>}
+    <span class="lees-meer">Lees meer</span>
+  </a>
+</li>

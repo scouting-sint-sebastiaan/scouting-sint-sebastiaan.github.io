@@ -12,10 +12,9 @@ const { Content } = await render(speltak);
 const d = speltak.data;
 ---
 
-<Base title={d.title}>
+<Base title={d.title} kruimels={[{ naam: 'Onze groepen', href: '/groepen/' }, { naam: d.title }]}>
   <div class="wrap">
     <article class="pagina speltak" data-speltak={speltak.id}>
-      <a class="terug" href="/groepen/">Alle groepen</a>
       <h1>{d.title}</h1>
       {d.image && <img src={d.image} alt="" />}
       <dl class="feiten">

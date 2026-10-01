@@ -10,14 +10,13 @@ const speltakken = (await getCollection('speltakken')).sort((a, b) => a.data.ord
     <div class="pagina breed">
       <h1>Onze groepen</h1>
       <p>Scouting is er voor alle leeftijden. Op zaterdag staat de deur voor iedereen open, kom gerust eens kijken.</p>
-      <ul class="kaarten">
+      <ul class="nieuws speltakken">
         {speltakken.map((s) => (
-          <li class="kaart speltak" data-speltak={s.id}>
-            <a class="stretch" href={`/groepen/${s.id}/`}>
-              <span class="badge" aria-hidden="true">{s.data.title[0]}</span>
-              <h3>{s.data.title}</h3>
-              <p>{s.data.leeftijd}</p>
-              {s.data.draaitijd && <p>{s.data.draaitijd}</p>}
+          <li data-speltak={s.id}>
+            <a href={`/groepen/${s.id}/`}>
+              <div class="titel"><h3>{s.data.title}</h3></div>
+              <p class="tekst">{s.data.leeftijd}{s.data.draaitijd && <><br />{s.data.draaitijd}</>}</p>
+              <span class="lees-meer">Lees meer</span>
             </a>
           </li>
         ))}

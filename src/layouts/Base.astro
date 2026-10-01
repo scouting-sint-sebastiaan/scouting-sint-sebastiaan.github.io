@@ -1,19 +1,26 @@
 ---
-import '@fontsource/poppins/400.css';
-import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/300.css';
+import '@fontsource/poppins/300-italic.css';
 import '@fontsource/poppins/600.css';
 import '@fontsource/poppins/700.css';
-import '@fontsource/poppins/800.css';
+import '@fontsource/roboto-slab/700.css';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import site from '../data/site.json';
+import Icoon from '../components/Icoon.astro';
 
+interface Kruimel {
+  naam: string;
+  href?: string;
+}
 interface Props {
   title?: string;
   description?: string;
+  kruimels?: Kruimel[];
 }
 const { title, description } = Astro.props;
 const fullTitle = title ? `${title} | ${site.naam}` : site.naam;
+const kruimels = Astro.props.kruimels ?? (title ? [{ naam: title }] : []);
 
 const speltakken = (await getCollection('speltakken')).sort((a, b) => a.data.order - b.data.order);
 const paginas = [...(await getCollection('paginas')), ...(await getCollection('speciaal'))].sort(
@@ -23,6 +30,8 @@ const menu = (m: string) => paginas.filter((p) => p.data.menu === m);
 
 const pad = Astro.url.pathname;
 const actief = (href: string) => (href === '/' ? pad === '/' : pad.startsWith(href));
+const inMenu = (m: string) => menu(m).some((p) => pad === `/${p.id}/`);
+const huidig = (aan: boolean) => (aan ? 'huidig' : undefined);
 ---
 
 <!doctype html>
@@ -34,64 +43,85 @@ const actief = (href: string) => (href === '/' ? pad === '/' : pad.startsWith(hr
     {description && <meta name="description" content={description} />}
     {import.meta.env.PUBLIC_NOINDEX && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/uploads/logo-basje.png" />
+    <link rel="preload" href="/tc4/UrbanJungle.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
-    <header class="kop">
-      <div class="wrap kop-in">
-        <a class="logo" href="/">
-          <img src="/uploads/logo-basje.png" alt="" width="50" height="50" />
-          <span>{site.naam}</span>
-        </a>
-        <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Menu openen" />
-        <label for="menu-toggle" class="menu-knop">Menu</label>
-        <nav class="menu" aria-label="Hoofdmenu">
-          <ul>
-            <li><a href="/" aria-current={actief('/') ? 'page' : undefined}>Home</a></li>
-            <li class="sub">
-              <a href="/groepen/">Onze groepen</a>
-              <ul>
-                {speltakken.map((s) => <li><a href={`/groepen/${s.id}/`}>{s.data.title}</a></li>)}
-              </ul>
-            </li>
-            <li class="sub">
-              <span tabindex="0">Ontdek onze scouting</span>
-              <ul>
-                {menu('ontdek').map((p) => <li><a href={`/${p.id}/`}>{p.data.title}</a></li>)}
-              </ul>
-            </li>
-            <li class="sub">
-              <span tabindex="0">Lid worden</span>
-              <ul>
-                {menu('lid-worden').map((p) => <li><a href={`/${p.id}/`}>{p.data.title}</a></li>)}
-              </ul>
-            </li>
-            <li><a href="/nieuws/" aria-current={actief('/nieuws/') ? 'page' : undefined}>Nieuws</a></li>
-            <li><a href="/agenda/" aria-current={actief('/agenda/') ? 'page' : undefined}>Agenda</a></li>
-            <li><a href="/contact/" aria-current={actief('/contact/') ? 'page' : undefined}>Contact</a></li>
-          </ul>
-        </nav>
-      </div>
+    <header id="kop">
+      <a class="logo" href="/" aria-label={`${site.naam}, naar de homepagina`}>
+        <img src="/uploads/logo-scouting-nederland.png" alt="" width="58" height="60" />
+        <span>St.<br />Sebastiaan<br /><small>Strijp</small></span>
+      </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Menu openen" />
+      <label for="menu-toggle" class="menu-knop" title="Menu"><Icoon naam="bars" /></label>
+      <nav class="menu" aria-label="Hoofdmenu">
+        <ul>
+          <li class={huidig(actief('/'))}><a href="/">Home</a></li>
+          <li class:list={['sub', huidig(actief('/groepen/'))]}>
+            <a href="/groepen/">Onze groepen</a>
+            <ul>
+              {speltakken.map((s) => <li><a href={`/groepen/${s.id}/`}>{s.data.title}</a></li>)}
+            </ul>
+          </li>
+          <li class:list={['sub', huidig(inMenu('ontdek'))]}>
+            <a href={`/${menu('ontdek')[0]?.id}/`}>Ontdek scouting</a>
+            <ul>
+              {menu('ontdek').map((p) => <li><a href={`/${p.id}/`}>{p.data.title}</a></li>)}
+            </ul>
+          </li>
+          <li class:list={['sub', huidig(inMenu('lid-worden'))]}>
+            <a href={`/${menu('lid-worden')[0]?.id}/`}>Lid worden</a>
+            <ul>
+              {menu('lid-worden').map((p) => <li><a href={`/${p.id}/`}>{p.data.title}</a></li>)}
+            </ul>
+          </li>
+          <li class={huidig(actief('/nieuws/'))}><a href="/nieuws/">Nieuws</a></li>
+          <li class={huidig(actief('/agenda/'))}><a href="/agenda/">Agenda</a></li>
+          <li class={huidig(actief('/contact/'))}><a href="/contact/">Contact</a></li>
+          <li class="extra"><a href={`mailto:${site.email}`} title="Mail ons"><Icoon naam="envelope" /></a></li>
+          <li class="extra"><a href={site.facebook} rel="noopener" title="Facebook"><Icoon naam="facebook" /></a></li>
+          <li class="extra"><a href={site.instagram} rel="noopener" title="Instagram"><Icoon naam="instagram" /></a></li>
+        </ul>
+      </nav>
     </header>
 
-    <main>
+    <main class:list={{ 'zonder-banner': pad !== '/' }}>
+      {kruimels.length > 0 && (
+        <nav class="wrap kruimels" aria-label="Kruimelpad">
+          <a href="/">Home</a>
+          {kruimels.map((k) => (
+            <>
+              {' » '}
+              {k.href ? <a href={k.href}>{k.naam}</a> : <span>{k.naam}</span>}
+            </>
+          ))}
+        </nav>
+      )}
       <slot />
     </main>
 
-    <footer class="voet">
+    <footer id="voet">
       <div class="wrap voet-in">
         <div>
-          <strong>{site.naam}</strong><br />
+          <h2>Vind ons op</h2>
+          <p class="social">
+            <a href={site.facebook} rel="noopener" title="Facebook"><Icoon naam="facebook" /></a>
+            <a href={site.instagram} rel="noopener" title="Instagram"><Icoon naam="instagram" /></a>
+            <a href={`mailto:${site.email}`} title="Mail ons"><Icoon naam="envelope" /></a>
+          </p>
+        </div>
+        <ul>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/agenda/">Agenda</a></li>
+          <li><a href={`/${menu('lid-worden')[0]?.id}/`}>Lid worden</a></li>
+          <li><a href="https://www.scouting.nl" rel="noopener">Scouting Nederland</a></li>
+        </ul>
+        <p class="adres">
+          {site.naam}<br />
           {site.adres}<br />
           <a href={`mailto:${site.email}`}>{site.email}</a>
-        </div>
-        <div class="social">
-          <a href={site.facebook} rel="noopener">Facebook</a>
-          <a href={site.instagram} rel="noopener">Instagram</a>
-        </div>
-        <a href="https://www.scouting.nl" rel="noopener" class="sn">
-          <img src="/uploads/logo-scouting-nederland.png" alt="Scouting Nederland" width="84" height="87" />
-        </a>
+        </p>
       </div>
+      <p class="wrap copyright">Dit is de officiële website van {site.naam}.</p>
     </footer>
   </body>
 </html>

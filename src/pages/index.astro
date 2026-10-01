@@ -1,10 +1,27 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
+import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import Base from '../layouts/Base.astro';
+import NieuwsKaart from '../components/NieuwsKaart.astro';
 import { korteDatum, isoDag } from '../lib/format';
 
 const home = await getEntry('speciaal', 'home');
 const { Content } = await render(home!);
+const html = await (await AstroContainer.create()).renderToString(Content);
+
+// De hometekst wordt op ##-koppen opgeknipt; de eerste twee secties worden de kolommen.
+const [inleiding, ...secties] = html.split(/(?=<h2[\s>])/);
+const blokken = secties.map((s) => {
+  const kop = s.match(/^<h2[^>]*>([\s\S]*?)<\/h2>/);
+  return { titel: kop?.[1] ?? '', html: kop ? s.slice(kop[0].length) : s };
+});
+const kolomExtra = [
+  { beeld: '/tc4/wie.jpg', knop: 'Meer info', href: '/ontdek-scouting-nederland/' },
+  { beeld: '/tc4/lid.jpg', knop: 'Kom een keer meedoen', href: '/informatie/' },
+];
+const kolommen = blokken.slice(0, 2).map((b, i) => ({ ...b, ...kolomExtra[i] }));
+const overig = blokken.slice(2).map((b) => `<h2>${b.titel}</h2>${b.html}`).join('');
+
 const speltakken = (await getCollection('speltakken')).sort((a, b) => a.data.order - b.data.order);
 const nieuws = (await getCollection('nieuws')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
 const vandaag = isoDag(new Date());
@@ -15,23 +32,73 @@ const agenda = (await getCollection('agenda'))
 ---
 
 <Base description="Scouting St. Sebastiaan in Strijp, Eindhoven. Bevers, welpen, verkenners, rowans en stam.">
-  <section class="hero" style="background-image: url('/uploads/placeholder-hero.svg')">
-    <div class="wrap hero-in">
-      <span class="sticker">Strijp &middot; Eindhoven</span>
-      <h1>Scouting St. Sebastiaan</h1>
-      <p>Scouting in Strijp, Eindhoven, voor kinderen en jongeren vanaf 4½ jaar. Op zaterdag staat de deur voor iedereen open.</p>
-      <a class="knop" href="/informatie/">Lid worden</a>
+  <section class="banner" style="background-image: url('/tc4/hero.jpg')">
+    <h1>Scouting St. Sebastiaan</h1>
+  </section>
+
+  <div class="wrap uitgelicht">
+    {kolommen.map((k) => (
+      <div>
+        <h2 set:html={k.titel} />
+        <div class="beeld" style={`background-image: url('${k.beeld}')`}></div>
+        <div class="tekst" set:html={k.html} />
+        <a class="knop" href={k.href}>{k.knop}</a>
+      </div>
+    ))}
+    <div>
+      <h2>Snel naar</h2>
+      <div class="beeld" style="background-image: url('/tc4/snel.jpg')"></div>
+      <ul class="snel">
+        <li><a href="/agenda/">Agenda</a></li>
+        <li><a href="/contributie/">Contributie</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="https://www.scouting.nl" rel="noopener">Scouting Nederland</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="oproep">
+    <div class="wrap">
+      <div class="beeld"><img src="/tc4/kompas.png" alt="" width="425" height="370" loading="lazy" /></div>
+      <div>
+        <h2>Vrijwilligers gezocht</h2>
+        <p>Ben jij enthousiast, geef je goed leiding en vind je het leuk om kinderen en jongeren te begeleiden bij hun persoonlijke ontwikkeling? Of heb je misschien bestuurlijke kwaliteiten die je wilt inzetten? Dan zijn wij op zoek naar jou!</p>
+        <a class="knop" href="/leiding-worden/">Meld je aan</a>
+      </div>
     </div>
   </section>
 
   <div class="wrap">
-    <div class="pagina breed">
-      <div class="tweekol">
-        <div class="inhoud"><Content /></div>
-        <div>
-          <h2 style="margin-top:0">Komende activiteiten</h2>
+    <div class="inhoud" set:html={inleiding + overig} />
+    <hr />
+
+    {nieuws.length > 0 && (
+      <>
+        <h2 class="sectiekop">Nieuws</h2>
+        <ul class="nieuws">
+          {nieuws.map((n) => <NieuwsKaart bericht={n} />)}
+        </ul>
+        <a class="knop" href="/nieuws/">Meer nieuws</a>
+      </>
+    )}
+
+    <div class="tweekol">
+      <div class="kopbeeld">
+        <div class="beeld" style="background-image: url('/tc4/klimmen.jpg')"><h2>Onze groepen</h2></div>
+        <div class="tekst">
+          <ul class="lijst">
+            {speltakken.map((s) => (
+              <li><a href={`/groepen/${s.id}/`}>{s.data.title}</a>: {s.data.leeftijd}</li>
+            ))}
+          </ul>
+        </div>
+        <div class="knoppen"><a class="knop" href="/groepen/">Alle groepen</a></div>
+      </div>
+      <div class="kader">
+        <h2>Komende activiteiten</h2>
+        <div class="tekst">
           {agenda.length === 0 ? (
-            <p class="meta">Er staan nog geen activiteiten gepland.</p>
+            <p>Er staan nog geen activiteiten gepland. Kijk binnenkort nog eens, of volg ons op Facebook en Instagram.</p>
           ) : (
             <ul class="agenda-lijst">
               {agenda.map((e) => (
@@ -42,56 +109,9 @@ const agenda = (await getCollection('agenda'))
               ))}
             </ul>
           )}
-          <p><a href="/agenda/">Bekijk de hele agenda</a></p>
         </div>
+        <div class="knoppen"><a class="knop zwart" href="/agenda/">Bekijk de agenda</a></div>
       </div>
-
-      <h2>Onze groepen</h2>
-      <ul class="kaarten">
-        {speltakken.map((s) => (
-          <li class="kaart speltak" data-speltak={s.id}>
-            <a class="stretch" href={`/groepen/${s.id}/`}>
-              <span class="badge" aria-hidden="true">{s.data.title[0]}</span>
-              <h3>{s.data.title}</h3>
-              <p>{s.data.leeftijd}</p>
-              {s.data.draaitijd && <p>{s.data.draaitijd}</p>}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-    </div>
-  </div>
-
-  <section class="band">
-    <div class="wrap">
-      <h2>Vrijwilligers gezocht</h2>
-      <p>Heb je zin om kinderen en jongeren te begeleiden bij hun persoonlijke ontwikkeling? Of heb je andere kwaliteiten die je wilt inzetten? Dan zoeken wij jou!</p>
-      <a class="knop" href="/leiding-worden/">Meld je aan</a>
-    </div>
-  </section>
-
-  <div class="wrap">
-    <div class="pagina breed">
-      {nieuws.length > 0 && (
-        <>
-          <h2>Nieuws</h2>
-          <ul class="kaarten">
-            {nieuws.map((n) => (
-              <li class="kaart nieuws-kaart">
-                <a class="stretch" href={`/nieuws/${n.id}/`}>
-                  <span class="foto" style={`background-image: url('${n.data.image ?? '/uploads/placeholder-foto.svg'}')`}>
-                    <span class="datum">{korteDatum(n.data.date)}</span>
-                  </span>
-                  <span class="titel">{n.data.title}</span>
-                  {n.data.samenvatting && <p>{n.data.samenvatting}</p>}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <p><a class="knop" href="/nieuws/">Meer nieuws</a></p>
-        </>
-      )}
     </div>
   </div>
 </Base>

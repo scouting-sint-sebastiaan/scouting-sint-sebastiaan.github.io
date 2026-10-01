@@ -13,10 +13,9 @@ const { Content } = await render(bericht);
 const d = bericht.data;
 ---
 
-<Base title={d.title} description={d.samenvatting}>
+<Base title={d.title} description={d.samenvatting} kruimels={[{ naam: 'Nieuws', href: '/nieuws/' }, { naam: d.title }]}>
   <div class="wrap">
     <article class="pagina">
-      <a class="terug" href="/nieuws/">Alle nieuws</a>
       <h1>{d.title}</h1>
       <p class="meta">{datum(d.date)}</p>
       {d.image && <img src={d.image} alt="" />}
