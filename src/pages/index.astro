@@ -60,20 +60,36 @@ const agenda = (await getCollection('agenda'))
         ))}
       </ul>
 
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>Vrijwilligers gezocht</h2>
+      <p>Heb je zin om kinderen en jongeren te begeleiden bij hun persoonlijke ontwikkeling? Of heb je andere kwaliteiten die je wilt inzetten? Dan zoeken wij jou!</p>
+      <a class="knop" href="/leiding-worden/">Meld je aan</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="pagina breed">
       {nieuws.length > 0 && (
         <>
           <h2>Nieuws</h2>
           <ul class="kaarten">
             {nieuws.map((n) => (
-              <li class="kaart">
+              <li class="kaart nieuws-kaart">
                 <a class="stretch" href={`/nieuws/${n.id}/`}>
-                  <h3>{n.data.title}</h3>
-                  <p class="meta">{korteDatum(n.data.date)}</p>
+                  <span class="foto" style={`background-image: url('${n.data.image ?? '/uploads/placeholder-foto.svg'}')`}>
+                    <span class="datum">{korteDatum(n.data.date)}</span>
+                  </span>
+                  <span class="titel">{n.data.title}</span>
                   {n.data.samenvatting && <p>{n.data.samenvatting}</p>}
                 </a>
               </li>
             ))}
           </ul>
+          <p><a class="knop" href="/nieuws/">Meer nieuws</a></p>
         </>
       )}
     </div>

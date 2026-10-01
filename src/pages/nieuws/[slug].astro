@@ -16,7 +16,7 @@ const d = bericht.data;
 <Base title={d.title} description={d.samenvatting}>
   <div class="wrap">
     <article class="pagina">
-      <a class="terug" href="/nieuws/">&larr; Alle nieuws</a>
+      <a class="terug" href="/nieuws/">Alle nieuws</a>
       <h1>{d.title}</h1>
       <p class="meta">{datum(d.date)}</p>
       {d.image && <img src={d.image} alt="" />}
