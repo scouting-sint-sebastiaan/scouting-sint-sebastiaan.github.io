@@ -2,8 +2,8 @@ backend:
   name: github
   repo: scouting-sint-sebastiaan/scouting-sint-sebastiaan.github.io
   branch: main
-  # TODO: URL van de OAuth-worker (zie README) zodat vrijwilligers kunnen inloggen met GitHub
-  # base_url: https://scouting-cms-auth.<account>.workers.dev
+  # Inloggen met GitHub loopt via /auth en /callback (Cloudflare Pages Functions, map functions/)
+  base_url: https://scouting-sint-sebastiaan.pages.dev
 
 site_url: https://www.scoutingsintsebastiaan.nl
 display_url: https://www.scoutingsintsebastiaan.nl
