@@ -1,0 +1,9 @@
+# Niet-definitieve adressen niet laten indexeren door zoekmachines.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://preview.scoutingsintsebastiaan.nl/*
+  X-Robots-Tag: noindex
