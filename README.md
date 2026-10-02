@@ -10,7 +10,8 @@ Gehost gratis op Cloudflare Pages; de inhoud staat als Markdown-bestanden in dez
    - Build command: `npm run build`
    - Output directory: `dist`
    - Environment variable: `NODE_VERSION=22`
-   - Custom domain: `www.scoutingsintsebastiaan.nl` (tijdelijk `preview.scoutingsintsebastiaan.nl`)
+   - Custom domains: `www.scoutingsintsebastiaan.nl` en `preview.scoutingsintsebastiaan.nl` (beide een CNAME naar `scouting-sint-sebastiaan.pages.dev` bij Strato); het domein zonder www stuurt via Strato door naar www.
+   - Livegang: zolang **Website openbaar maken** in het beheer uit staat, toont www een tijdelijke pagina (`functions/_middleware.js`). Aanzetten en publiceren maakt de site daar binnen een minuut openbaar.
    - Zoekmachines: `public/_headers` zet `X-Robots-Tag: noindex` op de pages.dev-adressen en op `preview.scoutingsintsebastiaan.nl`; het echte domein wordt wel geïndexeerd.
 3. **Inloggen voor vrijwilligers**: de map `functions/` bevat de GitHub-inlogkoppeling (Cloudflare Pages Functions, `/auth` en `/callback`). Maak in de GitHub-organisatie een OAuth-app (Settings → Developer settings → OAuth Apps) met als callback-URL `<site>/callback` en zet `GITHUB_CLIENT_ID` en `GITHUB_CLIENT_SECRET` als variabelen (secret) van het Cloudflare Pages-project. Pas `base_url` in `public/admin/config.yml` aan als het domein verandert, en werk de callback-URL van de OAuth-app bij. Wil je ook vanaf een preview-adres inloggen, zet dan `ALLOWED_ORIGINS` (kommagescheiden, bijvoorbeeld `https://*.scouting-sint-sebastiaan.pages.dev`). Zonder dit kunnen vrijwilligers ook inloggen met een persoonlijk toegangstoken (PAT).
 4. **Vrijwilligers uitnodigen** als collaborator op de GitHub-repo (schrijfrechten). Ze hebben een gratis GitHub-account nodig.

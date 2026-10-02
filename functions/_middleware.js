@@ -1,4 +1,6 @@
-// Tijdelijke pagina op het definitieve domein. Bij livegang dit bestand en public/_routes.json verwijderen.
+// Tijdelijke pagina op het definitieve domein totdat livegang in het beheer aan staat.
+import livegang from '../src/data/livegang.json';
+
 const tijdelijk = ['www.scoutingsintsebastiaan.nl', 'scoutingsintsebastiaan.nl'];
 
 const pagina = `<!doctype html>
@@ -13,7 +15,7 @@ const pagina = `<!doctype html>
 `;
 
 export async function onRequest({ request, next }) {
-  if (!tijdelijk.includes(new URL(request.url).hostname)) return next();
+  if (livegang.live || !tijdelijk.includes(new URL(request.url).hostname)) return next();
   return new Response(pagina, {
     headers: { 'Content-Type': 'text/html; charset=utf-8', 'X-Robots-Tag': 'noindex', 'Cache-Control': 'no-store' },
   });

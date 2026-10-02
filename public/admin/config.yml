@@ -149,3 +149,16 @@ collections:
           - { name: iban, label: IBAN, widget: string }
           - { name: tenaamstelling, label: Ten name van, widget: string }
           - { name: body, label: Tekst, widget: markdown }
+
+  - name: instellingen
+    label: Website openbaar maken
+    files:
+      - name: livegang
+        label: Livegang
+        file: src/data/livegang.json
+        fields:
+          - name: live
+            label: Website openbaar op www.scoutingsintsebastiaan.nl
+            widget: boolean
+            default: false
+            hint: "Uit: www.scoutingsintsebastiaan.nl toont een tijdelijke pagina. Aan: de hele website is daar te zien en vindbaar in zoekmachines. Na publiceren duurt het ongeveer een minuut."
