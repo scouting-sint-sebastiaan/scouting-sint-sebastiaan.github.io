@@ -13,6 +13,7 @@ Gehost gratis op Cloudflare Pages; de inhoud staat als Markdown-bestanden in dez
    - Custom domain: `www.scoutingsintsebastiaan.nl`
 3. **Inloggen voor vrijwilligers**: de map `functions/` bevat de GitHub-inlogkoppeling (Cloudflare Pages Functions, `/auth` en `/callback`). Maak in de GitHub-organisatie een OAuth-app (Settings → Developer settings → OAuth Apps) met als callback-URL `<site>/callback` en zet `GITHUB_CLIENT_ID` en `GITHUB_CLIENT_SECRET` als variabelen (secret) van het Cloudflare Pages-project. Pas `base_url` in `public/admin/config.yml` aan als het domein verandert, en werk de callback-URL van de OAuth-app bij. Wil je ook vanaf een preview-adres inloggen, zet dan `ALLOWED_ORIGINS` (kommagescheiden, bijvoorbeeld `https://*.scouting-sint-sebastiaan.pages.dev`). Zonder dit kunnen vrijwilligers ook inloggen met een persoonlijk toegangstoken (PAT).
 4. **Vrijwilligers uitnodigen** als collaborator op de GitHub-repo (schrijfrechten). Ze hebben een gratis GitHub-account nodig.
+5. **Contactformulier** (`functions/api/contact.js`): verstuurt berichten via SMTP. Variabelen van het Pages-project: `SMTP_HOST`, `SMTP_PORT` (465 of 587), `SMTP_USER`, `SMTP_PASS` (secret), `SMTP_FROM` (afzender), `TURNSTILE_SECRET` (secret) en optioneel `CONTACT_CC` (kopie van elk bericht, kommagescheiden). De sitekey van Cloudflare Turnstile staat in `src/data/site.json`. De ontvangers komen uit de content: algemene vragen naar het algemene e-mailadres, lid worden naar de secretaris en speltakvragen naar het adres van de speltak.
 
 ## Lokaal draaien
 

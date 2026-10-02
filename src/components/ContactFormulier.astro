@@ -1,0 +1,75 @@
+---
+import site from '../data/site.json';
+import { ontvangers } from '../lib/ontvangers';
+
+const lijst = await ontvangers();
+const algemeen = lijst.filter((o) => !o.speltak);
+const speltakken = lijst.filter((o) => o.speltak);
+---
+
+<section id="formulier" class="formulier">
+  <h2>Stuur ons een bericht</h2>
+
+  <p class="melding goed" data-melding="verzonden" hidden>Bedankt! Je bericht is verstuurd. We reageren zo snel mogelijk.</p>
+  <p class="melding fout" data-melding="onvolledig" hidden>Vul je naam, een geldig e-mailadres en je bericht in.</p>
+  <p class="melding fout" data-melding="controle" hidden>De controle tegen spam is mislukt. Probeer het nog een keer.</p>
+  <p class="melding fout" data-melding="fout" hidden>Er ging iets mis bij het versturen. Probeer het later nog eens, of mail ons via <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+  <form method="post" action="/api/contact">
+    <label>
+      Waar gaat je bericht over?
+      <select name="onderwerp" required>
+        {algemeen.map((o) => <option value={o.id}>{o.label}</option>)}
+        {speltakken.length > 0 && (
+          <optgroup label="Een speltak">
+            {speltakken.map((o) => <option value={o.id}>{o.label}</option>)}
+          </optgroup>
+        )}
+      </select>
+    </label>
+    <label>
+      Naam
+      <input name="naam" required maxlength="100" autocomplete="name" />
+    </label>
+    <label>
+      E-mailadres
+      <input type="email" name="email" required maxlength="200" autocomplete="email" />
+    </label>
+    <label>
+      Bericht
+      <textarea name="bericht" required maxlength="5000" rows="6"></textarea>
+    </label>
+    <label class="hp" aria-hidden="true">
+      Laat dit veld leeg
+      <input name="website" tabindex="-1" autocomplete="off" />
+    </label>
+    <div class="cf-turnstile" data-sitekey={site.turnstileSiteKey} data-language="nl"></div>
+    <p class="privacy">We gebruiken je gegevens alleen om je bericht te beantwoorden.</p>
+    <button class="knop" type="submit">Versturen</button>
+  </form>
+</section>
+
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script is:inline>
+  (() => {
+    const status = new URLSearchParams(location.search).get('formulier');
+    document.querySelectorAll('[data-melding]').forEach((m) => {
+      m.hidden = m.dataset.melding !== status;
+    });
+  })();
+</script>
+
+<style>
+  .formulier { max-width: 40rem; margin: 2.5rem 0; }
+  form { display: grid; gap: 1rem; }
+  label { display: grid; gap: .3rem; font-weight: 600; }
+  input, select, textarea { font: inherit; font-weight: normal; padding: .6rem .7rem; border: 1px solid var(--lijn, #ccc); border-radius: .3rem; background: #fff; color: inherit; width: 100%; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--groen, #00a551); outline-offset: 1px; }
+  textarea { resize: vertical; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .privacy { font-size: .9rem; margin: 0; }
+  button { cursor: pointer; justify-self: start; }
+  .melding { padding: .8rem 1rem; border-radius: .3rem; }
+  .goed { background: var(--groen-licht, #d8efe1); }
+  .fout { background: #fde2e1; }
+</style>
