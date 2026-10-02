@@ -3,13 +3,13 @@ title: Welkom bij Scouting St. Sebastiaan
 menu: geen
 order: 0
 fotos:
-  banner: /tc4/hero.jpg
-  kolom1: /tc4/wie.jpg
-  kolom2: /tc4/lid.jpg
-  snel: /tc4/snel.jpg
-  oproep: /tc4/kompas.png
-  groepen: /tc4/klimmen.jpg
-  nieuws: /tc4/nieuws.jpg
+  banner: /uploads/start-banner.jpg
+  kolom1: /uploads/start-kolom1.jpg
+  kolom2: /uploads/start-kolom2.jpg
+  snel: /uploads/start-snel-naar.jpg
+  oproep: /uploads/start-kompas.png
+  groepen: /uploads/start-groepen.jpg
+  nieuws: /uploads/start-nieuws.jpg
 ---
 
 De St. Sebastiaan groep is gevestigd in Eindhoven. Onze blokhut ligt in de Geertruidenbergstraat, naast de Theresiakerk in stadsdeel Strijp.

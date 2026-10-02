@@ -6,7 +6,7 @@ interface Props {
   bericht: CollectionEntry<'nieuws'>;
   standaardFoto?: string;
 }
-const { bericht, standaardFoto = '/tc4/nieuws.jpg' } = Astro.props;
+const { bericht, standaardFoto = '/uploads/start-nieuws.jpg' } = Astro.props;
 const d = bericht.data;
 const beeld = d.image ?? standaardFoto;
 ---
