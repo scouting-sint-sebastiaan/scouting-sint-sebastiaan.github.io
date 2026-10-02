@@ -1,14 +1,36 @@
 // Finishes the GitHub OAuth flow and hands the token to the CMS window that opened the popup.
 const js = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
 
+// "https://*.example.org" allows every https subdomain of example.org; other entries must match exactly.
+function parseOrigins(list) {
+  const exact = [];
+  const suffixes = [];
+  for (const o of list) {
+    if (o.startsWith('https://*.')) suffixes.push(o.slice('https://*'.length));
+    else exact.push(o);
+  }
+  return { exact, suffixes };
+}
+
 function respond(status, payload, origins) {
+  const { exact, suffixes } = parseOrigins(origins);
   const message = `authorization:github:${status}:${JSON.stringify(payload)}`;
   const html = `<!doctype html><meta charset="utf-8"><title>Inloggen</title><p>Even geduld...</p><script>
 (() => {
-  const allowed = ${js(origins)};
+  const exact = ${js(exact)};
+  const suffixes = ${js(suffixes)};
+  const allowed = (origin) => {
+    if (exact.includes(origin)) return true;
+    try {
+      const u = new URL(origin);
+      return u.protocol === 'https:' && u.port === '' && suffixes.some((s) => u.hostname.endsWith(s));
+    } catch {
+      return false;
+    }
+  };
   const message = ${js(message)};
   window.addEventListener('message', (e) => {
-    if (!allowed.includes(e.origin)) return;
+    if (!allowed(e.origin)) return;
     window.opener.postMessage(message, e.origin);
     window.close();
   });
