@@ -14,6 +14,7 @@
   --tekst: #222;
   --grijs: #ccc;
   --grijs-licht: #eee;
+  --lijn: #eee;
   --slab: 'Roboto Slab', Georgia, serif;
   --poppins: 'Poppins', system-ui, sans-serif;
   --breed: 1170px;
@@ -221,3 +222,7 @@ td { white-space: nowrap; }
   h2, .sectiekop { font-size: 1.6rem; }
   .uitgelicht h2 { font-size: 2.2rem; }
 }
+
+/* Contactformulier, zoals Contact Form 7 in TC4 */
+.formulier form { background: #fbfbfb; border: 1px solid var(--grijs-licht); padding: 2rem; }
+button.knop { border: 0; cursor: pointer; }

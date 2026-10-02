@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import ContactFormulier from '../components/ContactFormulier.astro';
 
 export async function getStaticPaths() {
   const paginas = [...(await getCollection('paginas')), ...(await getCollection('speciaal'))];
@@ -40,6 +41,8 @@ const groepen = [lijst('Bestuursleden', d.bestuur), lijst('Overig', d.overig)].f
       )}
 
       <div class="inhoud"><Content /></div>
+
+      {pagina.id === 'contact' && <ContactFormulier />}
 
       {groepen.map((g) => (
         <>
