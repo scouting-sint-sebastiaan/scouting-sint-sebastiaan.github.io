@@ -36,39 +36,72 @@ export async function onRequestPost({ request, env }) {
   const ontvanger = Object.hasOwn(lijst, onderwerp) ? lijst[onderwerp] : null;
   if (!ontvanger) return terug(request, 'onvolledig');
 
-  const port = Number(env.SMTP_PORT || 465);
+  const cc = (env.CONTACT_CC || '').split(',').map((a) => a.trim()).filter(Boolean);
+  const mail = {
+    from: { name: 'Website Scouting St. Sebastiaan', email: env.SMTP_FROM || env.SMTP_USER },
+    to: ontvanger.email,
+    cc: cc.length > 0 ? cc : undefined,
+    reply: { name: naam, email },
+    subject: `[Website] ${ontvanger.label}: ${naam}`,
+    text: [
+      `Bericht via het contactformulier op de website (${ontvanger.label}).`,
+      '',
+      `Naam: ${naam}`,
+      `E-mail: ${email}`,
+      '',
+      bericht,
+      '',
+      '--',
+      `Met "beantwoorden" stuur je je antwoord rechtstreeks naar ${naam}.`,
+    ].join('\r\n'),
+  };
+
   try {
-    await WorkerMailer.send(
-      {
-        host: env.SMTP_HOST,
-        port,
-        secure: port === 465,
-        startTls: port !== 465,
-        credentials: { username: env.SMTP_USER, password: env.SMTP_PASS },
-        authType: ['plain', 'login'],
-      },
-      {
-        from: { name: 'Website Scouting St. Sebastiaan', email: env.SMTP_FROM || env.SMTP_USER },
-        to: ontvanger.email,
-        cc: env.CONTACT_CC ? env.CONTACT_CC.split(',').map((a) => a.trim()).filter(Boolean) : undefined,
-        reply: { name: naam, email },
-        subject: `[Website] ${ontvanger.label}: ${naam}`,
-        text: [
-          `Bericht via het contactformulier op de website (${ontvanger.label}).`,
-          '',
-          `Naam: ${naam}`,
-          `E-mail: ${email}`,
-          '',
-          bericht,
-          '',
-          '--',
-          `Met "beantwoorden" stuur je je antwoord rechtstreeks naar ${naam}.`,
-        ].join('\r\n'),
-      },
-    );
+    await viaSmtp(env, mail);
   } catch (e) {
-    console.error('contactformulier: versturen mislukt', e instanceof Error ? e.message : e);
-    return terug(request, 'fout');
+    console.error('contactformulier: SMTP mislukt', melding(e));
+    if (!env.BREVO_API_KEY) return terug(request, 'fout');
+    try {
+      await viaBrevo(env, mail);
+      console.log('contactformulier: verstuurd via Brevo');
+    } catch (e2) {
+      console.error('contactformulier: Brevo mislukt', melding(e2));
+      return terug(request, 'fout');
+    }
   }
   return terug(request, 'verzonden');
+}
+
+const melding = (e) => (e instanceof Error ? e.message : String(e));
+
+function viaSmtp(env, mail) {
+  const port = Number(env.SMTP_PORT || 465);
+  return WorkerMailer.send(
+    {
+      host: env.SMTP_HOST,
+      port,
+      secure: port === 465,
+      startTls: port !== 465,
+      credentials: { username: env.SMTP_USER, password: env.SMTP_PASS },
+      authType: ['plain', 'login'],
+      socketTimeoutMs: 10_000,
+    },
+    mail,
+  );
+}
+
+async function viaBrevo(env, mail) {
+  const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: { 'api-key': env.BREVO_API_KEY, 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      sender: mail.from,
+      to: [{ email: mail.to }],
+      ...(mail.cc && { cc: mail.cc.map((email) => ({ email })) }),
+      replyTo: mail.reply,
+      subject: mail.subject,
+      textContent: mail.text,
+    }),
+  });
+  if (!res.ok) throw new Error(`Brevo ${res.status}: ${(await res.text()).slice(0, 300)}`);
 }
