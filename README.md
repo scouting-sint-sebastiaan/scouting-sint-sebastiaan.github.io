@@ -34,12 +34,14 @@ Zonder lokale Node kan het via Docker:
 | Pad | Inhoud |
 | --- | --- |
 | `src/content/nieuws/` | Nieuwsberichten |
-| `src/content/agenda/` | Activiteiten (verleden datums verdwijnen vanzelf uit de agenda) |
+| `src/content/agenda/` | Activiteiten (verleden datums verdwijnen vanzelf uit de agenda); met `speltakken` verschijnen ze ook op die speltakpagina's, zonder speltakken gelden ze voor de hele groep |
 | `src/content/speltakken/` | Bevers, Welpen, Verkenners, Rowans, Stam |
 | `src/content/paginas/` | Losse pagina's; het menu wordt automatisch opgebouwd uit `menu` en `order` |
 | `src/content/speciaal/` | Home, Contact, Contributie |
-| `src/data/site.json` | Adres, e-mail en sociale media (footer) |
-| `public/uploads/` | Foto's en bestanden |
+| `src/data/site.json` | Adres, e-mail, sociale media en de coördinaten voor de kaart |
+| `src/data/melding.json` | De melding bovenaan elke pagina (in het beheer: "Melding bovenaan de site") |
+| `integrations/fotos.mjs` | Maakt bij de build verkleinde WebP-versies (400/800/1600 px) van alle foto's in `/uploads/` en past de HTML daarop aan |
+| `public/uploads/` | Foto's en bestanden; `kaart-blokhut.png` is een vaste kaart van OpenStreetMap (bij verhuizing opnieuw maken) |
 | `public/_redirects` | Doorverwijzingen van de oude `.html`-adressen |
 
 ## Uitleg voor vrijwilligers
@@ -48,6 +50,10 @@ Zonder lokale Node kan het via Docker:
 2. Kies links wat je wilt aanpassen: **Nieuws**, **Agenda**, **Speltakken**, **Pagina's** of **Home, contact en contributie**.
 3. Pas de tekst aan, of kies "Nieuw" om iets toe te voegen. Foto's kun je slepen naar het afbeeldingsveld.
 4. Klik op **Publiceren**. Na ongeveer een minuut staat de wijziging op de site.
+
+Gaat een opkomst niet door? Zet dan onder **Melding bovenaan de site** "Melding tonen" aan en vul de tekst in. Met "Tonen tot en met" verdwijnt de melding daarna vanzelf.
+
+Ouders kunnen de agenda in hun telefoon zetten via de knop "Zet in je agenda" op de agendapagina of op de pagina van een speltak (`/agenda.ics`, `/groepen/<speltak>.ics`).
 
 Let op: alles wat je publiceert is openbaar. Zet geen foto's van kinderen online zonder toestemming van de ouders.
 

@@ -7,6 +7,7 @@ import '@fontsource/roboto-slab/700.css';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import site from '../data/site.json';
+import melding from '../data/melding.json';
 import Icoon from '../components/Icoon.astro';
 
 interface Kruimel {
@@ -84,6 +85,14 @@ const huidig = (aan: boolean) => (aan ? 'huidig' : undefined);
     </header>
 
     <main class:list={{ 'zonder-banner': pad !== '/' }}>
+      {melding.aan && melding.tekst && (
+        <div class="melding-balk" data-tot={melding.tot || undefined} role="status">
+          <div class="wrap">
+            <strong>Let op:</strong> {melding.tekst}
+            {melding.link && <> <a href={melding.link}>Meer informatie</a></>}
+          </div>
+        </div>
+      )}
       {kruimels.length > 0 && (
         <nav class="wrap kruimels" aria-label="Kruimelpad">
           <a href="/">Home</a>
@@ -122,5 +131,12 @@ const huidig = (aan: boolean) => (aan ? 'huidig' : undefined);
       </div>
       <p class="wrap copyright">Dit is de officiële website van {site.naam}.</p>
     </footer>
+    <script is:inline>
+      (() => {
+        const balk = document.querySelector('.melding-balk[data-tot]');
+        const vandaag = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' });
+        if (balk && balk.dataset.tot < vandaag) balk.remove();
+      })();
+    </script>
   </body>
 </html>

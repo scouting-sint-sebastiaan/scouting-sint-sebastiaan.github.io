@@ -73,6 +73,7 @@ const agenda = defineCollection({
     tijd: z.string().optional(),
     locatie: z.string().optional(),
     wie: z.string().optional(),
+    speltakken: z.array(z.string()).default([]),
   }),
 });
 

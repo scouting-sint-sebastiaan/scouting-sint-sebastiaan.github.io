@@ -1,38 +1,16 @@
 ---
-import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { datum, isoDag } from '../lib/format';
+import AgendaLijst from '../components/AgendaLijst.astro';
+import { activiteiten } from '../lib/agenda';
 
-const vandaag = isoDag(new Date());
-const events = (await getCollection('agenda'))
-  .filter((e) => isoDag(e.data.date) >= vandaag)
-  .sort((a, b) => +a.data.date - +b.data.date);
-const gerenderd = await Promise.all(events.map(async (e) => ({ e, Content: (await render(e)).Content })));
+const lijst = await activiteiten();
 ---
 
 <Base title="Agenda">
   <div class="wrap">
     <div class="pagina">
       <h1>Agenda</h1>
-      {gerenderd.length === 0 && <p class="meta">Er staan nog geen activiteiten gepland.</p>}
-      <ul class="agenda-lijst">
-        {gerenderd.map(({ e, Content }) => (
-          <li data-dag={isoDag(e.data.date)}>
-            <strong>{e.data.title}</strong>
-            <span class="meta">
-              {datum(e.data.date)}{e.data.tijd && `, ${e.data.tijd}`}{e.data.locatie && ` — ${e.data.locatie}`}{e.data.wie && ` (${e.data.wie})`}
-            </span>
-            <div class="inhoud"><Content /></div>
-          </li>
-        ))}
-      </ul>
+      <AgendaLijst lijst={lijst} ics="/agenda.ics" />
     </div>
   </div>
-  <script is:inline>
-    // Verberg activiteiten die verstreken zijn sinds de site voor het laatst is gebouwd.
-    var vandaag = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' });
-    document.querySelectorAll('[data-dag]').forEach(function (li) {
-      if (li.dataset.dag < vandaag) li.hidden = true;
-    });
-  </script>
 </Base>

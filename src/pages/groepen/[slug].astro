@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import AgendaLijst from '../../components/AgendaLijst.astro';
+import { activiteiten } from '../../lib/agenda';
 
 export async function getStaticPaths() {
   const speltakken = await getCollection('speltakken');
@@ -10,6 +12,7 @@ export async function getStaticPaths() {
 const { speltak } = Astro.props;
 const { Content } = await render(speltak);
 const d = speltak.data;
+const agenda = await activiteiten(speltak.id);
 ---
 
 <Base title={d.title} kruimels={[{ naam: 'Onze groepen', href: '/groepen/' }, { naam: d.title }]}>
@@ -24,6 +27,9 @@ const d = speltak.data;
         {d.email && <><dt>E-mail</dt><dd><a href={`mailto:${d.email}`}>{d.email}</a></dd></>}
       </dl>
       <div class="inhoud"><Content /></div>
+
+      <h2>Komende activiteiten</h2>
+      <AgendaLijst lijst={agenda} ics={`/groepen/${speltak.id}.ics`} leeg={`Er staan nog geen activiteiten voor de ${d.title.toLowerCase()} gepland.`} />
     </article>
   </div>
 </Base>

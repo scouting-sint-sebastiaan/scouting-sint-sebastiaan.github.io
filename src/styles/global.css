@@ -226,3 +226,10 @@ td { white-space: nowrap; }
 /* Contactformulier, zoals Contact Form 7 in TC4 */
 .formulier form { background: #fbfbfb; border: 1px solid var(--grijs-licht); padding: 2rem; }
 button.knop { border: 0; cursor: pointer; }
+
+/* Melding (zoals de notificatie in TC4) */
+.melding-balk { background: #e1071a; color: #fff; padding: .8rem 0; font-size: 1.05rem; }
+.melding-balk a { color: #fff; font-weight: 600; }
+main.zonder-banner > .melding-balk { margin: -4rem 0 2rem; }
+@media (min-width: 1025px) { .melding-balk .wrap { padding-left: max(15px, calc(215px - (100vw - var(--breed)) / 2)); } }
+@media (max-width: 1024px) { main.zonder-banner > .melding-balk { margin-top: -7rem; } }

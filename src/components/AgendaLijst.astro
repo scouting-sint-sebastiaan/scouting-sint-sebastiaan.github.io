@@ -1,0 +1,49 @@
+---
+import { render } from 'astro:content';
+import { aankomend, voorWie, type Activiteit } from '../lib/agenda';
+import { datum, isoDag } from '../lib/format';
+
+interface Props {
+  lijst: Activiteit[];
+  ics: string;
+  leeg?: string;
+}
+const { lijst, ics, leeg = 'Er staan nog geen activiteiten gepland.' } = Astro.props;
+const items = await Promise.all(
+  aankomend(lijst).map(async (e) => ({ e, wie: await voorWie(e), Content: (await render(e)).Content })),
+);
+---
+
+{items.length === 0 && <p class="meta">{leeg}</p>}
+<ul class="agenda-lijst">
+  {items.map(({ e, wie, Content }) => (
+    <li data-dag={isoDag(e.data.date)}>
+      <strong>{e.data.title}</strong>
+      <span class="meta">
+        {datum(e.data.date)}{e.data.tijd && `, ${e.data.tijd}`}{e.data.locatie && ` — ${e.data.locatie}`}{wie && ` (${wie})`}
+      </span>
+      <div class="inhoud"><Content /></div>
+    </li>
+  ))}
+</ul>
+<p class="abonneren">
+  <a class="knop" href={ics} data-webcal>Zet in je agenda</a>
+  <span class="meta">Nieuwe activiteiten verschijnen dan vanzelf in de agenda op je telefoon of computer.</span>
+</p>
+
+<script is:inline>
+  (() => {
+    // Verberg activiteiten die verstreken zijn sinds de site voor het laatst is gebouwd.
+    const vandaag = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' });
+    document.querySelectorAll('[data-dag]').forEach((li) => {
+      if (li.dataset.dag < vandaag) li.hidden = true;
+    });
+    document.querySelectorAll('a[data-webcal]').forEach((a) => {
+      a.href = a.href.replace(/^https?:/, 'webcal:');
+    });
+  })();
+</script>
+
+<style>
+  .abonneren { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin-top: 1.5rem; }
+</style>

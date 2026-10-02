@@ -1,0 +1,31 @@
+---
+import site from '../data/site.json';
+
+const { lat, lon } = site.locatie;
+const groter = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}`;
+const route = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(site.adres)}`;
+---
+
+<section class="kaart">
+  <h2>Zo vind je ons</h2>
+  <p>{site.adres}</p>
+  <figure>
+    <a href={groter} rel="noopener" title="Bekijk op OpenStreetMap">
+      <img src="/uploads/kaart-blokhut.png" alt={`Kaart van de omgeving van ${site.adres}`} width="960" height="540" loading="lazy" />
+    </a>
+    <figcaption>Kaart: © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap-bijdragers</a></figcaption>
+  </figure>
+  <p class="knoppen">
+    <a class="knop" href={route} rel="noopener">Route plannen</a>
+    <a href={groter} rel="noopener">Grotere kaart</a>
+  </p>
+</section>
+
+<style>
+  .kaart { max-width: 48rem; margin: 2.5rem 0; }
+  figure { margin: 0 0 1rem; }
+  img { display: block; width: 100%; height: auto; border: 1px solid var(--lijn, #ccc); }
+  figcaption { font-size: .8rem; color: #666; margin-top: .3rem; }
+  figcaption a { color: inherit; }
+  .knoppen { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+</style>

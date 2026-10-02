@@ -14,6 +14,18 @@ media_folder: public/uploads
 public_folder: /uploads
 
 collections:
+  - name: melding
+    label: Melding bovenaan de site
+    files:
+      - name: melding
+        label: Melding
+        file: src/data/melding.json
+        fields:
+          - { name: aan, label: Melding tonen, widget: boolean, default: false }
+          - { name: tekst, label: Tekst (bijvoorbeeld "Opkomst zaterdag gaat niet door vanwege storm"), widget: string, required: false }
+          - { name: link, label: Link voor meer informatie (optioneel), widget: string, required: false }
+          - { name: tot, label: Tonen tot en met (optioneel; daarna verdwijnt de melding vanzelf), widget: datetime, time_format: false, date_format: "DD-MM-YYYY", format: "YYYY-MM-DD", required: false }
+
   - name: nieuws
     label: Nieuws
     label_singular: Nieuwsbericht
@@ -41,7 +53,16 @@ collections:
       - { name: date, label: Datum, widget: datetime, time_format: false, date_format: "DD-MM-YYYY", format: "YYYY-MM-DD" }
       - { name: tijd, label: Tijd (bijvoorbeeld 14:00 - 17:00), widget: string, required: false }
       - { name: locatie, label: Locatie, widget: string, required: false }
-      - { name: wie, label: Voor wie (bijvoorbeeld Welpen), widget: string, required: false }
+      - name: speltakken
+        label: Speltakken (leeg laten als het voor de hele groep is)
+        widget: relation
+        collection: speltakken
+        value_field: "{{slug}}"
+        search_fields: [title]
+        display_fields: [title]
+        multiple: true
+        required: false
+      - { name: wie, label: Voor wie (optioneel extra tekst, bijvoorbeeld Ouders), widget: string, required: false }
       - { name: body, label: Meer informatie, widget: markdown, required: false }
 
   - name: speltakken
