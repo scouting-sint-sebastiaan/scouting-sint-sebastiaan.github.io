@@ -5,7 +5,8 @@ backend:
   # Inloggen met GitHub loopt via /auth en /callback (Cloudflare Pages Functions, map functions/)
   base_url: https://scouting-sint-sebastiaan.pages.dev
 
-site_url: https://www.scoutingsintsebastiaan.nl
+# Links "bekijk op de site" gaan naar preview., dat altijd hetzelfde toont als main (ook vóór livegang)
+site_url: https://preview.scoutingsintsebastiaan.nl
 display_url: https://www.scoutingsintsebastiaan.nl
 logo_url: /uploads/logo-basje.png
 locale: nl
@@ -20,6 +21,7 @@ collections:
       - name: melding
         label: Melding
         file: src/data/melding.json
+        preview_path: /
         fields:
           - { name: aan, label: Melding tonen, widget: boolean, default: false }
           - { name: tekst, label: Tekst (bijvoorbeeld "Opkomst zaterdag gaat niet door vanwege storm"), widget: string, required: false }
@@ -30,6 +32,7 @@ collections:
     label: Nieuws
     label_singular: Nieuwsbericht
     folder: src/content/nieuws
+    preview_path: nieuws/{{slug}}/
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{date}} - {{title}}"
@@ -45,6 +48,7 @@ collections:
     label: Agenda
     label_singular: Activiteit
     folder: src/content/agenda
+    preview_path: agenda/
     create: true
     summary: "{{date}} - {{title}}"
     sortable_fields: [date, title]
@@ -69,6 +73,7 @@ collections:
     label: Speltakken
     label_singular: Speltak
     folder: src/content/speltakken
+    preview_path: groepen/{{slug}}/
     create: false
     delete: false
     fields:
@@ -85,6 +90,7 @@ collections:
     label: Pagina's
     label_singular: Pagina
     folder: src/content/paginas
+    preview_path: "{{slug}}/"
     create: true
     fields:
       - { name: title, label: Titel, widget: string }
@@ -105,6 +111,7 @@ collections:
       - name: home
         label: Startpagina (tekst)
         file: src/content/speciaal/home.md
+        preview_path: /
         fields:
           - { name: title, label: Titel, widget: hidden, default: Welkom bij Scouting St. Sebastiaan }
           - { name: menu, label: Menu, widget: hidden, default: geen }
@@ -127,6 +134,7 @@ collections:
       - name: contact
         label: Contact
         file: src/content/speciaal/contact.md
+        preview_path: contact/
         fields:
           - { name: title, label: Titel, widget: hidden, default: Contact }
           - { name: menu, label: Menu, widget: hidden, default: geen }
@@ -156,6 +164,7 @@ collections:
       - name: contributie
         label: Contributie
         file: src/content/speciaal/contributie.md
+        preview_path: contributie/
         fields:
           - { name: title, label: Titel, widget: hidden, default: Contributie }
           - { name: menu, label: Menu, widget: hidden, default: lid-worden }

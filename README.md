@@ -46,10 +46,10 @@ Zonder lokale Node kan het via Docker:
 
 ## Uitleg voor vrijwilligers
 
-1. Ga naar `https://www.scoutingsintsebastiaan.nl/admin/` en log in.
+1. Ga naar `https://www.scoutingsintsebastiaan.nl/admin/` (tot de livegang: `https://preview.scoutingsintsebastiaan.nl/admin/`) en log in.
 2. Kies links wat je wilt aanpassen: **Nieuws**, **Agenda**, **Speltakken**, **Pagina's** of **Home, contact en contributie**.
-3. Pas de tekst aan, of kies "Nieuw" om iets toe te voegen. Foto's kun je slepen naar het afbeeldingsveld.
-4. Klik op **Publiceren**. Na ongeveer een minuut staat de wijziging op de site.
+3. Pas de tekst aan, of kies "Nieuw" om iets toe te voegen. Foto's kun je slepen naar het afbeeldingsveld. Rechts zie je een voorbeeld in de stijl van de site.
+4. Klik op **Publiceren**. Na ongeveer een minuut staat de wijziging op de site; met **Bekijken op de live site** open je de pagina.
 
 Gaat een opkomst niet door? Zet dan onder **Melding bovenaan de site** "Melding tonen" aan en vul de tekst in. Met "Tonen tot en met" verdwijnt de melding daarna vanzelf.
 

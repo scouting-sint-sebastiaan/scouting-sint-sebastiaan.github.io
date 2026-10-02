@@ -1,0 +1,5 @@
+/* Extra opmaak voor het voorbeeld naast de editor in het beheer; de sitestijl zelf komt uit de CSS van de site. */
+body { padding: 1rem 1.5rem; }
+section[role='group'] > h4 { font-family: var(--poppins); font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #8a8a8a; margin: 1.6rem 0 .3rem; }
+section[data-key-path='title'] > p.title { font-family: var(--slab); font-size: 2.5rem; font-weight: 700; line-height: 1.2; color: var(--groen); margin: 0; }
+section[data-field-type='markdown'] h2, section[data-field-type='markdown'] h3 { color: var(--groen); }

@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { defineConfig } from 'astro/config';
 import fotos from './integrations/fotos.mjs';
+import cmsVoorbeeld from './integrations/cms-voorbeeld.mjs';
 
 // Vóór livegang loopt elke pagina via functions/_middleware.js; daarna alleen de echte Function-routes.
 const pagesRoutes = {
@@ -20,5 +21,5 @@ export default defineConfig({
   site: 'https://www.scoutingsintsebastiaan.nl',
   trailingSlash: 'always',
   build: { format: 'directory' },
-  integrations: [fotos(), pagesRoutes],
+  integrations: [fotos(), cmsVoorbeeld(), pagesRoutes],
 });
