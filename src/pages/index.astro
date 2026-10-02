@@ -7,6 +7,17 @@ import { korteDatum, isoDag } from '../lib/format';
 
 const home = await getEntry('speciaal', 'home');
 const { Content } = await render(home!);
+const standaardFotos = {
+  banner: '/tc4/hero.jpg',
+  kolom1: '/tc4/wie.jpg',
+  kolom2: '/tc4/lid.jpg',
+  snel: '/tc4/snel.jpg',
+  oproep: '/tc4/kompas.png',
+  groepen: '/tc4/klimmen.jpg',
+  nieuws: '/tc4/nieuws.jpg',
+};
+const ingevuld = Object.fromEntries(Object.entries(home!.data.fotos ?? {}).filter(([, v]) => v));
+const foto = { ...standaardFotos, ...ingevuld };
 const html = await (await AstroContainer.create()).renderToString(Content);
 
 // De hometekst wordt op ##-koppen opgeknipt; de eerste twee secties worden de kolommen.
@@ -16,8 +27,8 @@ const blokken = secties.map((s) => {
   return { titel: kop?.[1] ?? '', html: kop ? s.slice(kop[0].length) : s };
 });
 const kolomExtra = [
-  { beeld: '/tc4/wie.jpg', knop: 'Meer info', href: '/ontdek-scouting-nederland/' },
-  { beeld: '/tc4/lid.jpg', knop: 'Kom een keer meedoen', href: '/informatie/' },
+  { beeld: foto.kolom1, knop: 'Meer info', href: '/ontdek-scouting-nederland/' },
+  { beeld: foto.kolom2, knop: 'Kom een keer meedoen', href: '/informatie/' },
 ];
 const kolommen = blokken.slice(0, 2).map((b, i) => ({ ...b, ...kolomExtra[i] }));
 const overig = blokken.slice(2).map((b) => `<h2>${b.titel}</h2>${b.html}`).join('');
@@ -32,7 +43,7 @@ const agenda = (await getCollection('agenda'))
 ---
 
 <Base description="Scouting St. Sebastiaan in Strijp, Eindhoven. Bevers, welpen, verkenners, rowans en stam.">
-  <section class="banner" style="background-image: url('/tc4/hero.jpg')">
+  <section class="banner" style={`background-image: url('${foto.banner}')`}>
     <h1>Scouting St. Sebastiaan</h1>
   </section>
 
@@ -47,7 +58,7 @@ const agenda = (await getCollection('agenda'))
     ))}
     <div>
       <h2>Snel naar</h2>
-      <div class="beeld" style="background-image: url('/tc4/snel.jpg')"></div>
+      <div class="beeld" style={`background-image: url('${foto.snel}')`}></div>
       <ul class="snel">
         <li><a href="/agenda/">Agenda</a></li>
         <li><a href="/contributie/">Contributie</a></li>
@@ -59,7 +70,7 @@ const agenda = (await getCollection('agenda'))
 
   <section class="oproep">
     <div class="wrap">
-      <div class="beeld"><img src="/tc4/kompas.png" alt="" width="425" height="370" loading="lazy" /></div>
+      <div class="beeld"><img src={foto.oproep} alt="" loading="lazy" /></div>
       <div>
         <h2>Vrijwilligers gezocht</h2>
         <p>Ben jij enthousiast, geef je goed leiding en vind je het leuk om kinderen en jongeren te begeleiden bij hun persoonlijke ontwikkeling? Of heb je misschien bestuurlijke kwaliteiten die je wilt inzetten? Dan zijn wij op zoek naar jou!</p>
@@ -76,7 +87,7 @@ const agenda = (await getCollection('agenda'))
       <>
         <h2 class="sectiekop">Nieuws</h2>
         <ul class="nieuws">
-          {nieuws.map((n) => <NieuwsKaart bericht={n} />)}
+          {nieuws.map((n) => <NieuwsKaart bericht={n} standaardFoto={foto.nieuws} />)}
         </ul>
         <a class="knop" href="/nieuws/">Meer nieuws</a>
       </>
@@ -84,7 +95,7 @@ const agenda = (await getCollection('agenda'))
 
     <div class="tweekol">
       <div class="kopbeeld">
-        <div class="beeld" style="background-image: url('/tc4/klimmen.jpg')"><h2>Onze groepen</h2></div>
+        <div class="beeld" style={`background-image: url('${foto.groepen}')`}><h2>Onze groepen</h2></div>
         <div class="tekst">
           <ul class="lijst">
             {speltakken.map((s) => (

@@ -4,10 +4,11 @@ import { korteDatum } from '../lib/format';
 
 interface Props {
   bericht: CollectionEntry<'nieuws'>;
+  standaardFoto?: string;
 }
-const { bericht } = Astro.props;
+const { bericht, standaardFoto = '/tc4/nieuws.jpg' } = Astro.props;
 const d = bericht.data;
-const beeld = d.image ?? '/tc4/nieuws.jpg';
+const beeld = d.image ?? standaardFoto;
 ---
 
 <li>

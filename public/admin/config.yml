@@ -88,6 +88,20 @@ collections:
           - { name: title, label: Titel, widget: hidden, default: Welkom bij Scouting St. Sebastiaan }
           - { name: menu, label: Menu, widget: hidden, default: geen }
           - { name: order, label: Volgorde, widget: hidden, default: 0 }
+          - name: fotos
+            label: Foto's op de startpagina
+            widget: object
+            collapsed: true
+            required: false
+            hint: Laat een veld leeg om de standaardfoto te gebruiken. Liggende foto's werken het best.
+            fields:
+              - { name: banner, label: Grote foto bovenaan, widget: image, required: false }
+              - { name: kolom1, label: Foto bij de eerste kolom, widget: image, required: false }
+              - { name: kolom2, label: Foto bij de tweede kolom, widget: image, required: false }
+              - { name: snel, label: Foto bij "Snel naar", widget: image, required: false }
+              - { name: oproep, label: Afbeelding bij "Vrijwilligers gezocht" (bij voorkeur zonder achtergrond), widget: image, required: false }
+              - { name: groepen, label: Foto bij "Onze groepen", widget: image, required: false }
+              - { name: nieuws, label: Foto voor nieuwsberichten zonder eigen foto, widget: image, required: false }
           - { name: body, label: Tekst, widget: markdown }
       - name: contact
         label: Contact

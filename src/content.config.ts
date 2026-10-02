@@ -19,6 +19,17 @@ const paginaSchema = z.object({
   tarieven: z.array(z.object({ speltak: z.string(), bedrag: z.string() })).optional(),
   iban: z.string().optional(),
   tenaamstelling: z.string().optional(),
+  fotos: z
+    .object({
+      banner: z.string().optional(),
+      kolom1: z.string().optional(),
+      kolom2: z.string().optional(),
+      snel: z.string().optional(),
+      oproep: z.string().optional(),
+      groepen: z.string().optional(),
+      nieuws: z.string().optional(),
+    })
+    .optional(),
 });
 
 const paginas = defineCollection({
