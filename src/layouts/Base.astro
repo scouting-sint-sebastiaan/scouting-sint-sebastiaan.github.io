@@ -18,8 +18,9 @@ interface Props {
   title?: string;
   description?: string;
   kruimels?: Kruimel[];
+  zoekbaar?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, zoekbaar = true } = Astro.props;
 const fullTitle = title ? `${title} | ${site.naam}` : site.naam;
 const kruimels = Astro.props.kruimels ?? (title ? [{ naam: title }] : []);
 
@@ -80,13 +81,14 @@ const huidig = (aan: boolean) => (aan ? 'huidig' : undefined);
           <li class="extra"><a href={`mailto:${site.email}`} title="Mail ons"><Icoon naam="envelope" /></a></li>
           <li class="extra"><a href={site.facebook} rel="noopener" title="Facebook"><Icoon naam="facebook" /></a></li>
           <li class="extra"><a href={site.instagram} rel="noopener" title="Instagram"><Icoon naam="instagram" /></a></li>
+          <li class="extra"><a href="/zoeken/" title="Zoeken"><Icoon naam="zoeken" /></a></li>
         </ul>
       </nav>
     </header>
 
-    <main class:list={{ 'zonder-banner': pad !== '/' }}>
+    <main class:list={{ 'zonder-banner': pad !== '/' }} data-pagefind-body={zoekbaar ? '' : undefined}>
       {melding.aan && melding.tekst && (
-        <div class="melding-balk" data-tot={melding.tot || undefined} role="status">
+        <div class="melding-balk" data-pagefind-ignore data-tot={melding.tot || undefined} role="status">
           <div class="wrap">
             <strong>Let op:</strong> {melding.tekst}
             {melding.link && <> <a href={melding.link}>Meer informatie</a></>}
@@ -94,7 +96,7 @@ const huidig = (aan: boolean) => (aan ? 'huidig' : undefined);
         </div>
       )}
       {kruimels.length > 0 && (
-        <nav class="wrap kruimels" aria-label="Kruimelpad">
+        <nav class="wrap kruimels" data-pagefind-ignore aria-label="Kruimelpad">
           <a href="/">Home</a>
           {kruimels.map((k) => (
             <>

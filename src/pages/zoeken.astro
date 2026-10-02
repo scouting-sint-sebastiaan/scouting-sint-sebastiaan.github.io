@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Zoeken" zoekbaar={false}>
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  <div class="wrap">
+    <div class="pagina">
+      <h1>Zoeken</h1>
+      <div id="zoeken"></div>
+    </div>
+  </div>
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    (() => {
+      const ui = new PagefindUI({ element: '#zoeken', showSubResults: true, showImages: false, autofocus: true, translations: { clear_search: 'Wissen' } });
+      const q = new URLSearchParams(location.search).get('q');
+      if (q) ui.triggerSearch(q);
+    })();
+  </script>
+</Base>
+
+<style is:global>
+  #zoeken {
+    --pagefind-ui-primary: var(--groen);
+    --pagefind-ui-text: var(--tekst);
+    --pagefind-ui-border: var(--grijs);
+    --pagefind-ui-border-radius: 0;
+    --pagefind-ui-font: var(--poppins);
+    max-width: 48rem;
+  }
+  #zoeken .pagefind-ui__result-link { color: var(--blauw); }
+</style>

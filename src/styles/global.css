@@ -60,7 +60,7 @@ hr { border: 0; border-top: 1px solid var(--groen); margin: 2rem 0; }
 .sub > ul a:hover { color: var(--groen); }
 .menu-toggle, .menu-knop { display: none; }
 
-@media (max-width: 1199px) {
+@media (max-width: 1279px) {
   #kop { padding-left: 180px; }
   .menu > ul > li > a { font-size: 1rem; padding: .5rem .55rem; }
   .menu li.extra > a { font-size: 1.25rem; padding: .4rem; }
