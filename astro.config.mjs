@@ -12,7 +12,7 @@ const pagesRoutes = {
       const { live } = JSON.parse(readFileSync(new URL('./src/data/livegang.json', import.meta.url), 'utf8'));
       const routes = live
         ? { version: 1, include: ['/auth', '/callback', '/api/*'], exclude: [] }
-        : { version: 1, include: ['/*'], exclude: ['/_astro/*', '/_fotos/*', '/pagefind/*', '/uploads/*', '/tc4/*'] };
+        : { version: 1, include: ['/*'], exclude: ['/_astro/*', '/_fotos/*', '/pagefind/*', '/uploads/*', '/tc4/*', '/handleiding/*'] };
       writeFileSync(new URL('_routes.json', dir), JSON.stringify(routes, null, 2) + '\n');
     },
   },

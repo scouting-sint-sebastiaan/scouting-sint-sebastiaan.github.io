@@ -1,0 +1,321 @@
+---
+import '@fontsource/poppins/300.css';
+import '@fontsource/poppins/600.css';
+
+const delen = [
+  ['begin', 'Zo werkt het'],
+  ['inloggen', 'De eerste keer inloggen'],
+  ['beheer', 'Het beheer openen'],
+  ['nieuws', 'Een nieuwsbericht plaatsen'],
+  ['agenda', 'Een activiteit in de agenda zetten'],
+  ['melding', 'Een melding bovenaan de site'],
+  ['speltakken', 'De speltakken aanpassen'],
+  ['paginas', "Pagina's en het menu"],
+  ['vaste', 'Contact, contributie en de startpagina'],
+  ['fotos', "Foto's"],
+  ['aanpassen', 'Iets verwijderen of terugvinden'],
+  ['formulier', 'Het contactformulier'],
+  ['voorbereiden', 'Wat moet er vóór de start gebeuren?'],
+  ['openbaar', 'De website openbaar maken'],
+  ['hulp', 'Als iets niet lukt'],
+  ['accounts', 'Welke diensten gebruiken we?'],
+];
+const img = (n: string) => `/handleiding/${n}.webp`;
+const vid = (n: string) => `/handleiding/${n}.mp4`;
+const pst = (n: string) => `/handleiding/${n}-poster.webp`;
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Handleiding websitebeheer | Scouting St. Sebastiaan</title>
+    <link rel="icon" href="/uploads/logo-basje.png" />
+  </head>
+  <body>
+    <header>
+      <h1>Handleiding websitebeheer</h1>
+      <p>Voor iedereen die de website van Scouting St. Sebastiaan bijhoudt. Je hoeft niets van websites te weten.</p>
+    </header>
+
+    <nav aria-label="Inhoud">
+      <h2>Inhoud</h2>
+      <ol>
+        {delen.map(([id, titel]) => <li><a href={`#${id}`}>{titel}</a></li>)}
+      </ol>
+    </nav>
+
+    <main>
+      <section id="begin">
+        <h2>Zo werkt het</h2>
+        <p>De website pas je aan in het <strong>beheer</strong>: een aparte pagina met invulvakken, net als een formulier. Je hoeft nooit iets te installeren.</p>
+        <ol>
+          <li>Je logt in op het beheer.</li>
+          <li>Je kiest wat je wilt aanpassen en vult de vakken in. Rechts zie je alvast hoe de tekst eruitziet.</li>
+          <li>Je klikt rechtsboven op <strong>Opslaan</strong>.</li>
+          <li>Na ongeveer een minuut staat de wijziging op de website.</li>
+        </ol>
+        <p class="let-op"><strong>Let op:</strong> wat je opslaat staat meteen online, er zit geen controle tussen. Lees je tekst dus even na. Je kunt niets kapotmaken dat niet te herstellen is.</p>
+      </section>
+
+      <section id="inloggen">
+        <h2>De eerste keer inloggen</h2>
+        <p>Inloggen gaat met een account bij <strong>GitHub</strong>. Dat is de dienst waar alle teksten en foto's van de website bewaard worden. Dit account is al voor je gemaakt.</p>
+        <ol>
+          <li>Open de mailbox <strong>tech@scoutingsintsebastiaan.nl</strong> via <a href="https://webmail.strato.com/">webmail.strato.com</a>. Het wachtwoord van de mailbox krijg je van Peter.</li>
+          <li>Zoek de e-mail <em>Inloggegevens GitHub voor het websitebeheer</em>. Daarin staan je gebruikersnaam en wachtwoord.</li>
+          <li>Ga naar <a href="https://github.com/login">github.com/login</a> en log in. Deze pagina is in het Engels: <em>Username</em> is je gebruikersnaam, <em>Password</em> je wachtwoord.</li>
+        </ol>
+        <figure><img src={img('02-github-login')} alt="De inlogpagina van GitHub" loading="lazy" /></figure>
+        <p>Vraagt GitHub om een code? Die krijg je dan per e-mail op tech@. Dat gebeurt vooral de eerste keer op een nieuwe computer.</p>
+
+        <h3>Kies een eigen wachtwoord</h3>
+        <ol>
+          <li>Ga naar <a href="https://github.com/settings/security">de beveiligingspagina van GitHub</a>.</li>
+          <li>Klik bij <em>Password</em> op <em>Change password</em> en kies een nieuw wachtwoord. Bewaar het op een veilige plek.</li>
+          <li>Verwijder daarna de e-mail met de inloggegevens, ook uit de prullenbak.</li>
+        </ol>
+        <figure><img src={img('94-github-wachtwoord')} alt="De beveiligingspagina van GitHub" loading="lazy" /></figure>
+
+        <h3>Een extra code bij het inloggen</h3>
+        <p>GitHub kan na verloop van tijd vragen om <em>two-factor authentication</em> in te stellen. Dan heb je naast je wachtwoord een code uit een app op je telefoon nodig, bijvoorbeeld Google Authenticator of Microsoft Authenticator.</p>
+        <ol>
+          <li>Klik op dezelfde beveiligingspagina op <em>Enable two-factor authentication</em> en volg de stappen.</li>
+          <li>GitHub laat <em>recovery codes</em> zien. <strong>Bewaar die goed</strong>: zonder telefoon én zonder die codes kom je niet meer in je account.</li>
+        </ol>
+      </section>
+
+      <section id="beheer">
+        <h2>Het beheer openen</h2>
+        <p>Ga naar het beheer:</p>
+        <ul>
+          <li><strong>Zolang de website nog niet openbaar is:</strong> <a href="https://preview.scoutingsintsebastiaan.nl/admin/">preview.scoutingsintsebastiaan.nl/admin/</a></li>
+          <li><strong>Als de website openbaar is:</strong> <a href="https://www.scoutingsintsebastiaan.nl/admin/">www.scoutingsintsebastiaan.nl/admin/</a></li>
+        </ul>
+        <p>Klik op <strong>Inloggen met GitHub</strong>. De knop <em>Inloggen met een toegangstoken</em> heb je niet nodig.</p>
+        <figure><img src={img('01-inloggen')} alt="Het inlogscherm van het beheer met de knop Inloggen met GitHub" loading="lazy" /></figure>
+        <p>Er opent een klein venster van GitHub. Log daar in als dat gevraagd wordt; het venster sluit daarna vanzelf. Nu zie je het beheer:</p>
+        <figure><img src={img('03-start')} alt="Het beheer met links de onderdelen en rechts de lijst met nieuwsberichten" loading="lazy" /><figcaption>Links staan de onderdelen van de website, rechts de berichten of pagina's van het gekozen onderdeel.</figcaption></figure>
+        <p>Staat het beheer in het Engels? Dan staat je browser op Engels. Kies rechtsboven je accountplaatje, dan <em>Settings</em>, en zet daar de taal op Nederlands.</p>
+        <p>Op de <a href="https://preview.scoutingsintsebastiaan.nl/">voorbeeldsite</a> kun je altijd zien hoe alles eruitziet. Bij een bericht of pagina brengt de knop <strong>Bekijken op de live site</strong> je daar meteen naartoe.</p>
+      </section>
+
+      <section id="nieuws">
+        <h2>Een nieuwsbericht plaatsen</h2>
+        <video controls preload="none" poster={pst('nieuws')} src={vid('nieuws')}></video>
+        <ol>
+          <li>Klik links op <strong>Nieuws</strong> en rechtsboven op <strong>Nieuw</strong>.</li>
+          <li>Vul de <strong>titel</strong> en de <strong>datum</strong> in. Met <em>Vandaag</em> vul je de datum van vandaag in.</li>
+          <li>De <strong>korte samenvatting</strong> komt op de overzichtspagina te staan.</li>
+          <li>Voeg eventueel een <strong>foto</strong> toe. Zonder foto gebruikt de site een standaardfoto.</li>
+          <li>Typ het bericht bij <strong>Tekst</strong> en klik op <strong>Opslaan</strong>.</li>
+        </ol>
+        <figure><img src={img('11-nieuws-ingevuld')} alt="Een ingevuld nieuwsbericht met rechts het voorbeeld" loading="lazy" /></figure>
+        <p>In de werkbalk boven de tekst kun je tekst <strong>vet</strong> of <em>schuin</em> maken, een link toevoegen en een foto in de tekst zetten.</p>
+        <p class="tip"><strong>Tip:</strong> verlaat je een bericht zonder op te slaan? Dan vraagt het beheer de volgende keer of je verder wilt gaan. Kies <strong>Herstellen</strong> om verder te gaan, of <strong>Verwerpen</strong> om opnieuw te beginnen.</p>
+        <figure><img src={img('13-concept-herstellen')} alt="De vraag Concept herstellen met de knoppen Herstellen en Verwerpen" loading="lazy" /></figure>
+      </section>
+
+      <section id="agenda">
+        <h2>Een activiteit in de agenda zetten</h2>
+        <video controls preload="none" poster={pst('agenda')} src={vid('agenda')}></video>
+        <ol>
+          <li>Klik links op <strong>Agenda</strong> en rechtsboven op <strong>Nieuw</strong>.</li>
+          <li>Vul de <strong>naam</strong> en de <strong>datum</strong> in. Tijd en locatie zijn niet verplicht.</li>
+          <li>Is het voor één of een paar speltakken? Vink die aan, dan staat de activiteit ook op hun pagina. Laat alles leeg als het voor de hele groep is.</li>
+          <li>Klik op <strong>Opslaan</strong>.</li>
+        </ol>
+        <p>Je hoeft oude activiteiten niet weg te halen: voorbije activiteiten verdwijnen vanzelf van de website. De volgende vier staan ook op de startpagina.</p>
+        <figure><img src={img('20-agenda-lijst')} alt="De lijst met activiteiten in het beheer" loading="lazy" /></figure>
+      </section>
+
+      <section id="melding">
+        <h2>Een melding bovenaan de site</h2>
+        <p>Gaat een opkomst niet door? Met een melding zien bezoekers dat meteen, op elke pagina.</p>
+        <video controls preload="none" poster={pst('melding')} src={vid('melding')}></video>
+        <ol>
+          <li>Klik links op <strong>Melding bovenaan de site</strong> en dan op <strong>Melding</strong>.</li>
+          <li>Zet <strong>Melding tonen</strong> aan en typ de tekst.</li>
+          <li>Kies eventueel bij <strong>Tonen tot en met</strong> een datum. Daarna verdwijnt de melding vanzelf.</li>
+          <li>Klik op <strong>Opslaan</strong>.</li>
+        </ol>
+        <p>Heb je geen einddatum gekozen? Zet de melding dan later zelf weer uit en klik op <strong>Opslaan</strong>.</p>
+      </section>
+
+      <section id="speltakken">
+        <h2>De speltakken aanpassen</h2>
+        <p>Klik links op <strong>Speltakken</strong> en kies een speltak. Hier pas je de leeftijd, de opkomsttijd, de leiding, het e-mailadres, de foto en de tekst aan.</p>
+        <figure><img src={img('30-speltak')} alt="De speltak Bevers in het beheer" loading="lazy" /></figure>
+        <p>Een speltak toevoegen of verwijderen kan niet in het beheer. Vraag daarvoor hulp.</p>
+      </section>
+
+      <section id="paginas">
+        <h2>Pagina's en het menu</h2>
+        <p>Klik links op <strong>Pagina's</strong>. Open een pagina om de tekst aan te passen, of klik op <strong>Nieuw</strong> voor een nieuwe pagina.</p>
+        <figure><img src={img('41-pagina-nieuw')} alt="Een nieuwe pagina aanmaken" loading="lazy" /></figure>
+        <p>Het menu van de website maakt zichzelf. Bij elke pagina kies je:</p>
+        <ul>
+          <li><strong>In welk menu moet de pagina komen?</strong> Onder <em>Ontdek scouting</em>, onder <em>Lid worden</em>, of nergens.</li>
+          <li><strong>Volgorde in het menu:</strong> hoe kleiner het getal, hoe hoger de pagina staat.</li>
+        </ul>
+        <p>Home, Onze groepen, Nieuws, Agenda en Contact staan vast in het menu. Die kun je niet zelf veranderen.</p>
+      </section>
+
+      <section id="vaste">
+        <h2>Contact, contributie en de startpagina</h2>
+        <p>Klik links op <strong>Contact, contributie en home</strong>. Daar staan drie vaste onderdelen.</p>
+        <figure><img src={img('50-speciaal')} alt="De drie vaste onderdelen in het beheer" loading="lazy" /></figure>
+        <h3>Contact</h3>
+        <p>Hier staan de bestuursleden en de overige contactpersonen. Klik op het pijltje om iemand open te klappen en pas de naam, het e-mailadres of het telefoonnummer aan.</p>
+        <figure><img src={img('51-contact')} alt="De contactgegevens van de bestuursleden in het beheer" loading="lazy" /></figure>
+        <p class="let-op"><strong>Let op:</strong> het contactformulier stuurt berichten over lid worden naar het e-mailadres dat hier bij de <em>Secretaris</em> staat. Wijzig de functienaam <em>Secretaris</em> daarom niet.</p>
+        <h3>Contributie</h3>
+        <p>Hier pas je de bedragen per kwartaal, het rekeningnummer en de tekst aan.</p>
+        <figure><img src={img('52-contributie')} alt="De contributie in het beheer" loading="lazy" /></figure>
+        <h3>Startpagina</h3>
+        <p>De tekst staat onderaan bij <strong>Tekst</strong>. De koppen <em>Wat is Scouting?</em> en <em>Lid worden</em> worden de twee kolommen bovenaan de startpagina; laat die koppen dus staan.</p>
+        <p>Wil je een foto vervangen? Klik op het kleine pijltje in de grijze balk bij <strong>Foto's op de startpagina</strong>. Dan zie je alle foto's.</p>
+        <figure><img src={img('53-home')} alt="De startpagina in het beheer" loading="lazy" /></figure>
+      </section>
+
+      <section id="fotos">
+        <h2>Foto's</h2>
+        <p>Bij een foto kun je het bestand in het vak slepen, of op <strong>Bladeren</strong> klikken. Liggende foto's werken het best. De site maakt grote foto's vanzelf kleiner.</p>
+        <p>Met het fotopictogram linksboven in het beheer zie je alle foto's die al op de site staan.</p>
+        <figure><img src={img('80-fotos')} alt="Het overzicht van alle foto's in het beheer" loading="lazy" /></figure>
+        <p class="let-op"><strong>Let op:</strong> alles wat je plaatst is openbaar. Zet geen foto's van kinderen online zonder toestemming van hun ouders. De foto's die er nu staan komen uit een film van Scouting Nederland; vervang ze gerust door eigen foto's.</p>
+      </section>
+
+      <section id="aanpassen">
+        <h2>Iets verwijderen of terugvinden</h2>
+        <p>Open het bericht of de activiteit en klik rechtsboven op de <strong>drie puntjes</strong> naast <em>Opslaan</em>. Daar vind je <strong>Verwijderen</strong>, en ook <strong>Dupliceren</strong> om een kopie te maken.</p>
+        <figure><img src={img('14-opties')} alt="Het menu achter de drie puntjes met onder andere Verwijderen" loading="lazy" /></figure>
+        <p>Heb je iets per ongeluk opgeslagen of verwijderd? Geen paniek: alle eerdere versies blijven bewaard en kunnen worden teruggezet. Vraag daarvoor hulp.</p>
+        <p>Uitloggen doe je met je accountplaatje rechtsboven in het beheer. Op je eigen computer hoeft dat niet; dan blijf je ingelogd.</p>
+      </section>
+
+      <section id="formulier">
+        <h2>Het contactformulier</h2>
+        <p>Bezoekers kunnen op de <a href="https://preview.scoutingsintsebastiaan.nl/contact/">contactpagina</a> een bericht sturen. Ze kiezen waar het over gaat, en het bericht gaat automatisch naar de juiste persoon:</p>
+        <table>
+          <thead><tr><th>De bezoeker kiest</th><th>Het bericht gaat naar</th></tr></thead>
+          <tbody>
+            <tr><td>Algemene vraag</td><td>info@</td></tr>
+            <tr><td>Lid worden</td><td>het adres van de secretaris</td></tr>
+            <tr><td>Een speltak</td><td>het adres van die speltak</td></tr>
+          </tbody>
+        </table>
+        <p>Van elk bericht komt voorlopig ook een kopie binnen op <strong>tech@</strong>. Met <em>Beantwoorden</em> stuur je je antwoord rechtstreeks naar de bezoeker.</p>
+        <figure><img src={img('91-site-contact')} alt="Het contactformulier op de website" loading="lazy" /></figure>
+        <p>Probeer het formulier één keer zelf uit voordat de site openbaar wordt, en kijk of het bericht aankomt.</p>
+      </section>
+
+      <section id="voorbereiden">
+        <h2>Wat moet er vóór de start gebeuren?</h2>
+        <p>De inhoud komt van de oude website, maar een deel is nog tijdelijk. Loop deze lijst na:</p>
+        <ul class="vink">
+          <li><strong>Contact:</strong> vervang overal <em>Voornaam Achternaam</em> en het nepnummer <em>06 12345678</em>.</li>
+          <li><strong>Pagina's &gt; Organisatie:</strong> vervang de namen in de lijsten.</li>
+          <li><strong>Pagina's &gt; Geschiedenis:</strong> schrijf de tekst of haal die op bij Peter.</li>
+          <li><strong>Speltakken:</strong> vul bij elke speltak de leiding in.</li>
+          <li><strong>Contributie:</strong> controleer de bedragen en het rekeningnummer.</li>
+          <li><strong>Agenda:</strong> verwijder de voorbeeldactiviteiten en zet de echte erin.</li>
+          <li><strong>Nieuws:</strong> verwijder het voorbeeldbericht.</li>
+          <li><strong>Foto's:</strong> vervang wat je wilt door eigen foto's.</li>
+          <li><strong>Contactformulier:</strong> stuur een testbericht.</li>
+        </ul>
+        <p>Peter heeft de oorspronkelijke namen en foto's van de oude site nog en kan die aan je geven.</p>
+      </section>
+
+      <section id="openbaar">
+        <h2>De website openbaar maken</h2>
+        <p>Op <a href="https://www.scoutingsintsebastiaan.nl/">www.scoutingsintsebastiaan.nl</a> staat nu nog een tijdelijke pagina. Is alles klaar? Dan zet je de website zelf aan.</p>
+        <figure><img src={img('92-www-tijdelijk')} alt="De tijdelijke pagina op www.scoutingsintsebastiaan.nl" loading="lazy" /></figure>
+        <video controls preload="none" poster={pst('openbaar')} src={vid('openbaar')}></video>
+        <ol>
+          <li>Klik links op <strong>Website openbaar maken</strong> en dan op <strong>Livegang</strong>.</li>
+          <li>Zet de schakelaar aan en klik op <strong>Opslaan</strong>.</li>
+          <li>Wacht ongeveer een minuut en bekijk <a href="https://www.scoutingsintsebastiaan.nl/">www.scoutingsintsebastiaan.nl</a>. Zie je nog de tijdelijke pagina? Ververs de pagina dan.</li>
+        </ol>
+        <p>Klopt er toch iets niet? Zet de schakelaar weer uit en sla op, dan komt de tijdelijke pagina terug. Zoekmachines zoals Google vinden de site vanaf nu; dat kan een paar dagen duren.</p>
+      </section>
+
+      <section id="hulp">
+        <h2>Als iets niet lukt</h2>
+        <h3>Mijn wijziging staat er niet op</h3>
+        <ol>
+          <li>Wacht twee minuten en ververs de pagina.</li>
+          <li>Kijk op <a href="https://github.com/scouting-sint-sebastiaan/scouting-sint-sebastiaan.github.io/actions">de pagina met updates op GitHub</a>. Bovenaan staat je laatste wijziging.</li>
+        </ol>
+        <figure><img src={img('93-github-acties')} alt="De lijst met updates op GitHub, met groene vinkjes" loading="lazy" /></figure>
+        <ul>
+          <li><strong>Groen vinkje:</strong> de wijziging staat online. Ververs de website nog eens.</li>
+          <li><strong>Geel rondje:</strong> het is nog bezig. Even wachten.</li>
+          <li><strong>Rood kruisje:</strong> er ging iets mis. De website blijft gewoon werken met de vorige versie. Vraag hulp.</li>
+        </ul>
+        <h3>Andere problemen</h3>
+        <ul>
+          <li><strong>Inloggen lukt niet:</strong> controleer of je bij GitHub bent ingelogd. Wachtwoord vergeten? Klik op de GitHub-inlogpagina op <em>Forgot password?</em>; de mail komt op tech@ binnen.</li>
+          <li><strong>Het beheer doet raar:</strong> ververs de pagina. Niet-opgeslagen werk biedt het beheer dan vanzelf weer aan.</li>
+          <li><strong>Grote lege pagina:</strong> wacht even, of ga terug naar de lijst en open het item opnieuw.</li>
+          <li><strong>Geen oplossing?</strong> Vraag Peter, en noteer wat je deed en wat je zag. Een schermafbeelding helpt.</li>
+        </ul>
+      </section>
+
+      <section id="accounts">
+        <h2>Welke diensten gebruiken we?</h2>
+        <p>Dit hoef je normaal niet te gebruiken, maar het is goed om te weten wat erachter zit.</p>
+        <table>
+          <thead><tr><th>Dienst</th><th>Waarvoor</th><th>Kosten</th></tr></thead>
+          <tbody>
+            <tr><td><strong>GitHub</strong></td><td>Bewaart alle teksten en foto's en alle eerdere versies. Hier log je ook mee in op het beheer.</td><td>Gratis</td></tr>
+            <tr><td><strong>Cloudflare</strong></td><td>Zet de website online, en beschermt het contactformulier tegen spam.</td><td>Gratis</td></tr>
+            <tr><td><strong>Strato</strong></td><td>De domeinnaam en alle e-mailadressen.</td><td>Ongeveer € 43 per jaar, in juli</td></tr>
+            <tr><td><strong>Brevo</strong></td><td>Reserve om berichten van het contactformulier te versturen als Strato het niet doet.</td><td>Gratis</td></tr>
+          </tbody>
+        </table>
+        <p>De logins voor Cloudflare en Brevo gaan via tech@. Bewaar alle wachtwoorden op een veilige plek, niet in deze handleiding: deze pagina is voor iedereen met de link te lezen.</p>
+        <h3>Eén keer per jaar nakijken</h3>
+        <ul>
+          <li>Is de rekening van Strato betaald? Zonder betaling stoppen de website en de e-mail.</li>
+          <li>Werkt <a href="https://scoutingsintsebastiaan.nl/">scoutingsintsebastiaan.nl</a> (zonder www) nog en stuurt het door? Het beveiligingscertificaat bij Strato wordt regelmatig vernieuwd, de eerste keer vóór 1 april 2027.</li>
+          <li>Stuur een testbericht met het contactformulier.</li>
+        </ul>
+      </section>
+    </main>
+
+    <style is:global>
+      :root { --groen: #00a551; --blauw: #0066b2; --lijn: #d9dfdb; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font: 300 1.0625rem/1.7 'Poppins', system-ui, sans-serif; color: #222; }
+      header { background: var(--groen); color: #fff; padding: 2rem 1rem; text-align: center; }
+      header h1 { margin: 0 0 .3rem; font-weight: 600; font-size: 2rem; line-height: 1.2; }
+      header p { margin: 0; }
+      nav, main { max-width: 52rem; margin: 0 auto; padding: 0 1rem; }
+      nav { padding-top: 1.5rem; }
+      a { color: var(--blauw); }
+      section { padding: 1.5rem 0 1rem; border-bottom: 1px solid var(--lijn); scroll-margin-top: 1rem; }
+      section:last-child { border: 0; }
+      h2 { font-weight: 600; font-size: 1.5rem; line-height: 1.25; color: var(--groen); margin: 0 0 .7rem; }
+      h3 { font-weight: 600; font-size: 1.15rem; margin: 1.5rem 0 .4rem; }
+      strong { font-weight: 600; }
+      li { margin: .25rem 0; }
+      figure { margin: 1.2rem 0; }
+      img, video { display: block; width: 100%; height: auto; border: 1px solid var(--lijn); border-radius: .4rem; background: #f4f4f4; }
+      video { margin: 1rem 0; aspect-ratio: 1280 / 800; }
+      figcaption { font-size: .9rem; color: #555; margin-top: .4rem; }
+      .let-op, .tip { padding: .8rem 1rem; border-radius: .4rem; }
+      .let-op { background: #fff4d6; }
+      .tip { background: #d8efe1; }
+      table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+      th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--lijn); vertical-align: top; }
+      th { font-weight: 600; }
+      .vink { list-style: none; padding: 0; }
+      .vink li { padding-left: 1.8rem; position: relative; }
+      .vink li::before { content: ''; position: absolute; left: 0; top: .35rem; width: 1.1rem; height: 1.1rem; border: 2px solid var(--groen); border-radius: .2rem; }
+      @media print { video { display: none; } }
+    </style>
+  </body>
+</html>

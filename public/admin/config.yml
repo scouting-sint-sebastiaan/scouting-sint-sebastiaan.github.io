@@ -191,4 +191,4 @@ collections:
             label: Website openbaar op www.scoutingsintsebastiaan.nl
             widget: boolean
             default: false
-            hint: "Uit: www.scoutingsintsebastiaan.nl toont een tijdelijke pagina. Aan: de hele website is daar te zien en vindbaar in zoekmachines. Na publiceren duurt het ongeveer een minuut."
+            hint: "Uit: www.scoutingsintsebastiaan.nl toont een tijdelijke pagina. Aan: de hele website is daar te zien en vindbaar in zoekmachines. Na opslaan duurt het ongeveer een minuut."

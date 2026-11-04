@@ -7,3 +7,7 @@ https://:version.:project.pages.dev/*
 
 https://preview.scoutingsintsebastiaan.nl/*
   X-Robots-Tag: noindex
+
+# De handleiding is alleen voor beheerders.
+/handleiding/*
+  X-Robots-Tag: noindex

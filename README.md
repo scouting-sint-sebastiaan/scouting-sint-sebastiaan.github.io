@@ -6,12 +6,9 @@ Gehost gratis op Cloudflare Pages; de inhoud staat als Markdown-bestanden in dez
 ## Eenmalige inrichting (voor de beheerder)
 
 1. **GitHub-repo**: `scouting-sint-sebastiaan/scouting-sint-sebastiaan.github.io` (organisatie `scouting-sint-sebastiaan`, eigenaar `petervv1`). Push deze map daarheen; `repo:` in `public/admin/config.yml` staat al goed.
-2. **Cloudflare Pages** koppelen aan de repo:
-   - Build command: `npm run build`
-   - Output directory: `dist`
-   - Environment variable: `NODE_VERSION=22`
+2. **Cloudflare Pages**: GitHub Actions bouwt de site bij elke push naar `main` en zet die op het project `scouting-sint-sebastiaan` (`.github/workflows/deploy-cloudflare.yml`, secrets `CLOUDFLARE_API_TOKEN` en `CLOUDFLARE_ACCOUNT_ID`).
    - Custom domains: `www.scoutingsintsebastiaan.nl` en `preview.scoutingsintsebastiaan.nl` (beide een CNAME naar `scouting-sint-sebastiaan.pages.dev` bij Strato); het domein zonder www stuurt via Strato door naar www.
-   - Livegang: zolang **Website openbaar maken** in het beheer uit staat, toont www een tijdelijke pagina (`functions/_middleware.js`). Aanzetten en publiceren maakt de site daar binnen een minuut openbaar.
+   - Livegang: zolang **Website openbaar maken** in het beheer uit staat, toont www een tijdelijke pagina (`functions/_middleware.js`). Aanzetten en opslaan maakt de site daar binnen een minuut openbaar.
    - Zoekmachines: `public/_headers` zet `X-Robots-Tag: noindex` op de pages.dev-adressen en op `preview.scoutingsintsebastiaan.nl`; het echte domein wordt wel geïndexeerd.
 3. **Inloggen voor vrijwilligers**: de map `functions/` bevat de GitHub-inlogkoppeling (Cloudflare Pages Functions, `/auth` en `/callback`). Maak in de GitHub-organisatie een OAuth-app (Settings → Developer settings → OAuth Apps) met als callback-URL `<site>/callback` en zet `GITHUB_CLIENT_ID` en `GITHUB_CLIENT_SECRET` als variabelen (secret) van het Cloudflare Pages-project. Pas `base_url` in `public/admin/config.yml` aan als het domein verandert, en werk de callback-URL van de OAuth-app bij. Wil je ook vanaf een preview-adres inloggen, zet dan `ALLOWED_ORIGINS` (kommagescheiden, bijvoorbeeld `https://*.scouting-sint-sebastiaan.pages.dev`). Zonder dit kunnen vrijwilligers ook inloggen met een persoonlijk toegangstoken (PAT).
 4. **Vrijwilligers uitnodigen** als collaborator op de GitHub-repo (schrijfrechten). Ze hebben een gratis GitHub-account nodig.
@@ -46,10 +43,12 @@ Zonder lokale Node kan het via Docker:
 
 ## Uitleg voor vrijwilligers
 
+De volledige handleiding met schermafbeeldingen en filmpjes staat op `/handleiding/`.
+
 1. Ga naar `https://www.scoutingsintsebastiaan.nl/admin/` (tot de livegang: `https://preview.scoutingsintsebastiaan.nl/admin/`) en log in.
-2. Kies links wat je wilt aanpassen: **Nieuws**, **Agenda**, **Speltakken**, **Pagina's** of **Home, contact en contributie**.
+2. Kies links wat je wilt aanpassen: **Nieuws**, **Agenda**, **Speltakken**, **Pagina's** of **Contact, contributie en home**.
 3. Pas de tekst aan, of kies "Nieuw" om iets toe te voegen. Foto's kun je slepen naar het afbeeldingsveld. Rechts zie je een voorbeeld in de stijl van de site.
-4. Klik op **Publiceren**. Na ongeveer een minuut staat de wijziging op de site; met **Bekijken op de live site** open je de pagina.
+4. Klik op **Opslaan**. Na ongeveer een minuut staat de wijziging op de site; met **Bekijken op de live site** open je de pagina.
 
 Gaat een opkomst niet door? Zet dan onder **Melding bovenaan de site** "Melding tonen" aan en vul de tekst in. Met "Tonen tot en met" verdwijnt de melding daarna vanzelf.
 
@@ -61,4 +60,3 @@ Let op: alles wat je publiceert is openbaar. Zet geen foto's van kinderen online
 
 - De inhoud is overgenomen uit het archief van de oude site (juni 2026). Veel oorspronkelijke foto's waren niet gearchiveerd en ontbreken (o.a. de foto uit 1981 en de Scoutfit-foto's).
 - Het voorbeeldnieuwsbericht en het voorbeeld in de agenda mogen verwijderd worden.
-- Het oude contactformulier is vervangen door e-mailadressen.
