@@ -5,34 +5,34 @@ order: 0
 adres: Geertruidenbergstraat 1, Eindhoven
 bestuur:
   - functie: Voorzitter
-    naam: Voornaam Achternaam
+    naam: Mike Achterberg
     email: voorzitter@scoutingsintsebastiaan.nl
-    telefoon: ""
+    telefoon: ''
   - functie: Secretaris
-    naam: Voornaam Achternaam
+    naam: Randolph Lagerwerf
     email: secretaris@scoutingsintsebastiaan.nl
-    telefoon: ""
+    telefoon: ''
   - functie: Groepsbegeleider
-    naam: Voornaam Achternaam
+    naam: Nog op zoek naar een nieuwe groepsbegeleider
     email: groepsbegeleider@scoutingsintsebastiaan.nl
-    telefoon: 06 12345678
+    telefoon: ''
   - functie: Penningmeester
-    naam: Voornaam Achternaam
+    naam: Anouk de Beer
     email: penningmeester@scoutingsintsebastiaan.nl
-    telefoon: ""
+    telefoon: ''
   - functie: Voorzitter technische staf
-    naam: Voornaam Achternaam
+    naam: Jessy Hoeben
     email: ts@scoutingsintsebastiaan.nl
-    telefoon: ""
+    telefoon: ''
 overig:
   - functie: Vertrouwenspersoon
-    naam: Voornaam
+    naam: Machteld
     email: vertrouwenspersoon@scoutingsintsebastiaan.nl
     telefoon: 06 12345678
   - functie: Website
-    naam: Voornaam Achternaam
+    naam: Miriam Veneman
     email: webmaster@scoutingsintsebastiaan.nl
-    telefoon: ""
+    telefoon: ''
 ---
 
 ## Verhuur blokhut
