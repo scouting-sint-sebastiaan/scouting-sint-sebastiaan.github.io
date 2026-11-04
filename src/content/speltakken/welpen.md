@@ -6,7 +6,7 @@ draaitijd: Zaterdag, in de zomertijd van 14.00 tot 17.00 uur en in de wintertijd
 staf: |-
   Yvonne Pronk
   Robin Vink
-  Christiaan
+  Christiaan van der Wijst
 email: welpen@scoutingsintsebastiaan.nl
 image: /uploads/Junglekaart.jpg
 ---
