@@ -2,7 +2,7 @@
 title: Contact
 menu: geen
 order: 0
-adres: Geertruidenbergstraat 1, Eindhoven
+adres: 'Adres: Geertruidenbergstraat 1, Eindhoven'
 bestuur:
   - functie: Voorzitter
     naam: Mike Achterberg
