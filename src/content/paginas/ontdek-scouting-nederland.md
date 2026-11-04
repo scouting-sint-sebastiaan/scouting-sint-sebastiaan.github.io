@@ -4,11 +4,11 @@ menu: ontdek
 order: 2
 ---
 
-Wat is Scouting nu precies? Deze vraag wordt vaak gesteld en is niet zomaar te beantwoorden. Scouting biedt namelijk ontzettend veel verschillende activiteiten. Precies die activiteiten waar de verschillende leeftijdsgroepen plezier in hebben, interesse voor tonen en graag willen doen. Alles draait om uitdaging en plezier. Scouts spelen op een verantwoorde manier en in een veilige omgeving. Om kwaliteit in het spel te brengen, zijn de activiteiten gebaseerd op de spelvisie van Scouting. Deze spelvisie gaat uit van de groei en ontwikkeling van kinderen en jongeren. Dat biedt garantie voor jarenlang plezier bij uitdagende activiteiten.
+Wat is Scouting nu precies? Deze vraag wordt vaak gesteld en is niet zomaar te beantwoorden. Scouting biedt namelijk ontzettend veel verschillende activiteiten. Precies die activiteiten waar de verschillende leeftijdsgroepen plezier in hebben, interesse voor tonen en graag willen doen. Alles draait om uitdaging en plezier. Scouts/verkenners spelen op een verantwoorde manier en in een veilige omgeving. Om kwaliteit in het spel te brengen, zijn de activiteiten gebaseerd op de spelvisie van Scouting. Deze spelvisie gaat uit van de groei en ontwikkeling van kinderen en jongeren. Dat biedt garantie voor jarenlang plezier bij uitdagende activiteiten.
 
 ## Van bever tot stam
 
-Scouting staat open voor iedereen, of je nu jong of oud bent. Al vanaf dat je 5 jaar bent, ben je welkom bij onze Scoutinggroep. Bij Scouting wordt gewerkt met verschillende leeftijdsgroepen die speltakken worden genoemd. De jongste speltakken, namelijk de bevers, welpen & verkenners, spelen hun spel in een thema. Het spelen in een thema prikkelt de fantasie en stimuleert de ontwikkeling van het kind. De rowans maken hun eigen programma's, deze groep is dan ook niet meer gekoppeld aan een thema. Bij de stam is er een keer per kwartaal een programma, meestal ontmoeten zij elkaar in hun eigen kleine bruine kroeg.
+Scouting staat open voor iedereen, of je nu jong of oud bent. Al vanaf dat je 4 1/2  jaar bent, ben je welkom bij onze Scoutinggroep. Bij Scouting wordt gewerkt met verschillende leeftijdsgroepen die speltakken worden genoemd. De jongste speltakken, namelijk de bevers en welpen, spelen hun spel in een thema. Het spelen in een thema prikkelt de fantasie en stimuleert de ontwikkeling van het kind. De verkenners leren steeds meer zelfstandig dingen te doen en te overleven in de natuur. De rowans maken hun eigen programma's, deze groepen zijn dan ook niet meer gekoppeld aan een thema. Bij de stam is er een keer per maand een programma, meestal ontmoeten zij elkaar in hun eigen kleine bruine kroeg.
 
 ## Scoutingtradities
 
