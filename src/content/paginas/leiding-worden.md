@@ -6,7 +6,7 @@ order: 4
 
 Scouting is een organisatie die draait op vrijwilligers. Iedere week hebben grote groepen kinderen en jongeren plezier in het Scoutingspel.
 
-Regelmatig zijn we bij onze Scoutinggroep op zoek naar nieuwe leden die ons stafteam willen versterken. We willen immers zoveel mogelijk kinderen en jongeren het Scoutingspel laten beleven. Je kunt leiding worden binnen de verschillende speltakken, afhankelijk van waar er open plaatsen zijn binnen het team. Heb je interesse om wekelijks en gedurende de verschillende kampen een speltak te vermaken, leuke programma's te verzinnen en lekker buiten bezig te zijn? Ben je enthousiast en wil je tijd investeren in een leuke nieuwe hobby? Of kun je ons op een andere manier helpen? Neem dan [contact](/contact/) op met het groepsbestuur.
+Op dit moment zijn we bij onze Scoutinggroep op zoek naar nieuwe leden die die diverse stafteams kunnen versterken. We willen immers zoveel mogelijk kinderen en jongeren het Scoutingspel laten beleven. We zijn op zoek naar leiding bij zowel de Bevers, Welpen en Verkenners. Heb je interesse om wekelijks en gedurende de verschillende weekenden en kampen een speltak te vermaken, leuke programma's te verzinnen en lekker buiten bezig te zijn? Ben je enthousiast en wil je tijd investeren in een leuke nieuwe hobby? Of kun je ons op een andere manier helpen? Neem dan [contact](/contact/) op met het groepsbestuur.
 
 ## Scouting Academy
 
