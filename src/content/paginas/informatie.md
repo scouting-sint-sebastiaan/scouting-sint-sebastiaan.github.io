@@ -4,7 +4,7 @@ menu: lid-worden
 order: 1
 ---
 
-Scouting staat voor uitdaging! Al op vier en half jarige leeftijd kun je lid worden. Als je lid wilt worden van een speltak kun je eerst 4 keer komen kijken. Je doet dan mee aan alle activiteiten en je maakt voor het eerst kennis met Scouting en met de groep. Mocht je het na 4 keer niets vinden, dan ben je nergens toe verplicht. Vind je het wel leuk, dan word je automatisch lid en mag je iedere week komen. Als je een paar maanden lid bent, word je geïnstalleerd en mag je je [Scoutfit](/scoutfit/) dragen. Op dat moment hoor je er echt bij!
+Scouting staat voor uitdaging! Al vanaf vier en half jarige leeftijd kun je lid worden. Als je lid wilt worden van een speltak kun je eerst 4 keer komen kijken. Je doet dan mee aan alle activiteiten en je maakt voor het eerst kennis met Scouting en met de groep. Mocht je het na 4 keer niets vinden, dan ben je nergens toe verplicht. Vind je het wel leuk, dan word je automatisch lid en mag je iedere week komen. Als je een paar maanden lid bent, word je geïnstalleerd en mag je je [Scoutfit](/scoutfit/) dragen. Op dat moment hoor je er echt bij!
 
 Voor de verschillende leeftijdsgroepen zijn er bij Scouting zogenaamde speltakken:
 
@@ -47,13 +47,9 @@ Vanaf het moment dat je lid bent geworden bij de groep draag je de Scoutfit. Teg
 Wij doen er alles aan om de (sociale) veiligheid van onze leden en vrijwilligers zo groot mogelijk te houden. Hieronder een aantal zaken om dit te realiseren.
 
 1. Wij vallen onder het [Huishoudelijk Reglement van Scouting Nederland](https://www.scouting.nl/downloads/huishoudelijk-reglement-scouting-nederland) waar in hoofdstuk 11 dit uitgebreid beschreven staat.
-
 2. Onderdeel van dit Huishoudelijk Reglement is de [gedragscode](https://www.scouting.nl/downloads/bestuur-en-organisatie/veiligheid/sociale-veiligheid/310-gedragscode) van Scouting Nederlandwaar wij ook aan gebonden zijn.
-
 3. Daarnaast hangt in elk lokaal van ons gebouw een lijst met aangescherpte [gedragsregels](/uploads/gedragsregels.pdf), omdat wij het Huishoudelijk Reglement soms te algemeen vonden.
-
 4. We hebben een [vertrouwenspersoon](/contact/) waar iedereen terecht kan met vragen of een melding van ongewenst gedrag. Deze vertrouwenspersoon is geen leiding of lid van het bestuur, maar staat geheel buiten onze groep.
-
 5. Tot slot kunnen wij gebruik maken van het [Landelijk Opvangteam van Scouting Nederland](https://www.scouting.nl/ondersteuning/veiligheid/calamiteiten/landelijk-opvangteam).
 
 Sowieso kunt u [contact](/contact/) opnemen met een van ons bij elke vraag.
