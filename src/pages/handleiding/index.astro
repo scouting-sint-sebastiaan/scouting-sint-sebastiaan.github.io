@@ -8,7 +8,6 @@ const delen = [
   ['beheer', 'Het beheer openen'],
   ['nieuws', 'Een nieuwsbericht plaatsen'],
   ['agenda', 'Een activiteit in de agenda zetten'],
-  ['melding', 'Een melding bovenaan de site'],
   ['speltakken', 'De speltakken aanpassen'],
   ['paginas', "Pagina's en het menu"],
   ['vaste', 'Contact, contributie en de startpagina'],
@@ -57,7 +56,7 @@ const pst = (n: string) => `/handleiding/${n}-poster.webp`;
           <li>Je klikt rechtsboven op <strong>Opslaan</strong>.</li>
           <li>Na ongeveer een minuut staat de wijziging op de website.</li>
         </ol>
-        <p class="let-op"><strong>Let op:</strong> wat je opslaat staat meteen online, er zit geen controle tussen. Lees je tekst dus even na. Je kunt niets kapotmaken dat niet te herstellen is.</p>
+        <p class="let-op"><strong>Let op:</strong> wat je opslaat staat meteen online, er zit geen controle tussen. Lees je tekst dus even na. Eerdere versies blijven bewaard, dus een foutje is altijd terug te draaien.</p>
       </section>
 
       <section id="inloggen">
@@ -94,7 +93,7 @@ const pst = (n: string) => `/handleiding/${n}-poster.webp`;
           <li><strong>Zolang de website nog niet openbaar is:</strong> <a href="https://preview.scoutingsintsebastiaan.nl/admin/">preview.scoutingsintsebastiaan.nl/admin/</a></li>
           <li><strong>Als de website openbaar is:</strong> <a href="https://www.scoutingsintsebastiaan.nl/admin/">www.scoutingsintsebastiaan.nl/admin/</a></li>
         </ul>
-        <p>Klik op <strong>Inloggen met GitHub</strong>. De knop <em>Inloggen met een toegangstoken</em> heb je niet nodig.</p>
+        <p>Klik op <strong>Inloggen met GitHub</strong>.</p>
         <figure><img src={img('01-inloggen')} alt="Het inlogscherm van het beheer met de knop Inloggen met GitHub" loading="lazy" /></figure>
         <p>Er opent een klein venster van GitHub. Log daar in als dat gevraagd wordt; het venster sluit daarna vanzelf. Nu zie je het beheer:</p>
         <figure><img src={img('03-start')} alt="Het beheer met links de onderdelen en rechts de lijst met nieuwsberichten" loading="lazy" /><figcaption>Links staan de onderdelen van de website, rechts de berichten of pagina's van het gekozen onderdeel.</figcaption></figure>
@@ -129,19 +128,6 @@ const pst = (n: string) => `/handleiding/${n}-poster.webp`;
         </ol>
         <p>Je hoeft oude activiteiten niet weg te halen: voorbije activiteiten verdwijnen vanzelf van de website. De volgende vier staan ook op de startpagina.</p>
         <figure><img src={img('20-agenda-lijst')} alt="De lijst met activiteiten in het beheer" loading="lazy" /></figure>
-      </section>
-
-      <section id="melding">
-        <h2>Een melding bovenaan de site</h2>
-        <p>Gaat een opkomst niet door? Met een melding zien bezoekers dat meteen, op elke pagina.</p>
-        <video controls preload="none" poster={pst('melding')} src={vid('melding')}></video>
-        <ol>
-          <li>Klik links op <strong>Melding bovenaan de site</strong> en dan op <strong>Melding</strong>.</li>
-          <li>Zet <strong>Melding tonen</strong> aan en typ de tekst.</li>
-          <li>Kies eventueel bij <strong>Tonen tot en met</strong> een datum. Daarna verdwijnt de melding vanzelf.</li>
-          <li>Klik op <strong>Opslaan</strong>.</li>
-        </ol>
-        <p>Heb je geen einddatum gekozen? Zet de melding dan later zelf weer uit en klik op <strong>Opslaan</strong>.</p>
       </section>
 
       <section id="speltakken">

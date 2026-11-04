@@ -4,6 +4,7 @@ backend:
   branch: main
   # Inloggen met GitHub loopt via /auth en /callback (Cloudflare Pages Functions, map functions/)
   base_url: https://scouting-sint-sebastiaan.pages.dev
+  auth_methods: [oauth]
 
 # Links "bekijk op de site" gaan naar preview., dat altijd hetzelfde toont als main (ook vóór livegang)
 site_url: https://preview.scoutingsintsebastiaan.nl
