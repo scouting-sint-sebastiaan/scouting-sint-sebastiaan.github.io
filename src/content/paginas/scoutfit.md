@@ -12,11 +12,12 @@ Bijna alle onderdelen van de Scoutfit zijn verkrijgbaar bij de ScoutShop via [ww
 
 ## Onderdelen
 
-- Beverblouse, verkrijgbaar bij de ScoutShop
-- Welpenblouse, verkrijgbaar bij de ScoutShop
-- Verkennersblouse, verkrijgbaar bij de ScoutShop
+- Beverblouse Rood, verkrijgbaar bij de ScoutShop
+- Welpenblouse Groen, verkrijgbaar bij de ScoutShop
+- Verkennersblouse Beige verkrijgbaar bij de ScoutShop
 - Rowan vest, bij de Rowans laten maken
 - Rowan t-shirt, bij de Rowans laten maken
+- Rowanblouse Bordeauxrood, verkrijgbaar bij de Scoutshop
 - Algemene basje t-shirt, verkrijgbaar bij je speltak
-- Algemene das, de das zelf is verkrijgbaar bij de ScoutShop, het groene lintje is verkrijgbaar bij je speltak
+- Algemene das, de bruine das zelf is verkrijgbaar bij de ScoutShop, het groene lintje is verkrijgbaar bij je speltak
 - Verkenners baret, verkrijgbaar bij de ScoutShop
