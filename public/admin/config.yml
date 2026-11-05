@@ -248,7 +248,7 @@ collections:
           - name: bevestiging
             label: "⛔ PAS OP: HIER KUN JE DE HELE WEBSITE KAPOTMAKEN. Typ ter bevestiging: OK"
             widget: string
-            hint: "Kapotte HTML (bijvoorbeeld een tag die niet wordt gesloten) komt niet online: dan blijft de vorige versie staan, en bij de updates op GitHub verschijnt een rood kruisje. HTML die wel klopt maar er verkeerd uitziet wordt NIET tegengehouden en staat binnen een minuut online, op elke pagina. Niet zeker? Afblijven. Een veld leeg = de normale versie uit Algemene instellingen. Een ingevuld veld vervangt dat blok helemaal, en de normale velden van dat blok doen dan niets meer."
+            hint: "Kapotte HTML (bijvoorbeeld een tag die niet wordt gesloten) komt niet online: dan blijft de vorige versie staan, en bij de updates op GitHub verschijnt een rood kruisje. HTML die wel klopt maar er verkeerd uitziet wordt NIET tegengehouden en staat binnen een minuut online, op elke pagina. Twijfel je? Laat dit onderdeel dan liever met rust. Een veld leeg = de normale versie uit Algemene instellingen. Een ingevuld veld vervangt dat blok helemaal, en de normale velden van dat blok doen dan niets meer."
             pattern: ['^[Oo][Kk]$', 'Typ OK om te bevestigen']
           - { name: footer, label: "⚠️ Footer: eigen HTML (leeg = de normale footer)", hint: "Vervangt de hele inhoud van de footer, op elke pagina.", widget: code, default_language: html, allow_language_selection: false, output_code_only: true, required: false }
           - { name: snelNaar, label: "⚠️ Snel naar: eigen HTML (leeg = de normale links)", hint: "Vervangt de lijst met links op de startpagina.", widget: code, default_language: html, allow_language_selection: false, output_code_only: true, required: false }
