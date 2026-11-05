@@ -12,7 +12,7 @@ fotos:
   nieuws: /uploads/start-nieuws.jpg
 ---
 
-De St. Sebastiaan groep is gevestigd in Eindhoven. Onze blokhut ligt in de Geertruidenbergstraat, naast de Theresiakerk in stadsdeel Strijp.
+Scouting St. Sebastiaan is gevestigd in Eindhoven. Onze blokhut ligt in de Geertruidenbergstraat, naast het kerkhof van de Theresiakerk in stadsdeel Strijp.
 
 Onze groep bestaat uit ongeveer 100 leden, verdeeld over 5 speltakken van verschillende leeftijden.
 
