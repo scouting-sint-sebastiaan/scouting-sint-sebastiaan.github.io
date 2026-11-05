@@ -7,4 +7,4 @@ speltakken: []
 wie: Voor alle groepen binnen de regio Eindhoven vanaf 16 jaar.
 ---
 
-Het altijd gezellige en0 tofste carnavalfeest voor scouting in Regio Eindhoven.
+Het altijd gezellige en tofste carnavalfeest voor scouting in Regio Eindhoven.
