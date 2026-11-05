@@ -28,7 +28,7 @@ overig:
   - functie: Vertrouwenspersoon
     naam: Machteld
     email: vertrouwenspersoon@scoutingsintsebastiaan.nl
-    telefoon: 06 12345678
+    telefoon: 06 4469 2077
   - functie: Website
     naam: Miriam Veneman
     email: webmaster@scoutingsintsebastiaan.nl
