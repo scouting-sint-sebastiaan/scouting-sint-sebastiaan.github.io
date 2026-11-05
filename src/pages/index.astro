@@ -4,6 +4,7 @@ import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import Base from '../layouts/Base.astro';
 import NieuwsKaart from '../components/NieuwsKaart.astro';
 import { korteDatum, isoDag } from '../lib/format';
+import algemeen from '../data/algemeen.json';
 
 const home = await getEntry('speciaal', 'home');
 const { Content } = await render(home!);
@@ -27,8 +28,8 @@ const blokken = secties.map((s) => {
   return { titel: kop?.[1] ?? '', html: kop ? s.slice(kop[0].length) : s };
 });
 const kolomExtra = [
-  { beeld: foto.kolom1, knop: 'Meer info', href: '/ontdek-scouting-nederland/' },
-  { beeld: foto.kolom2, knop: 'Kom een keer meedoen', href: '/informatie/' },
+  { beeld: foto.kolom1, knop: algemeen.kolomKnoppen.kolom1.tekst, href: algemeen.kolomKnoppen.kolom1.link },
+  { beeld: foto.kolom2, knop: algemeen.kolomKnoppen.kolom2.tekst, href: algemeen.kolomKnoppen.kolom2.link },
 ];
 const kolommen = blokken.slice(0, 2).map((b, i) => ({ ...b, ...kolomExtra[i] }));
 const overig = blokken.slice(2).map((b) => `<h2>${b.titel}</h2>${b.html}`).join('');
@@ -60,10 +61,7 @@ const agenda = (await getCollection('agenda'))
       <h2>Snel naar</h2>
       <div class="beeld" style={`background-image: url('${foto.snel}')`}></div>
       <ul class="snel">
-        <li><a href="/agenda/">Agenda</a></li>
-        <li><a href="/contributie/">Contributie</a></li>
-        <li><a href="/contact/">Contact</a></li>
-        <li><a href="https://www.scouting.nl" rel="noopener">Scouting Nederland</a></li>
+        {algemeen.snelNaar.map((l) => <li><a href={l.link}>{l.tekst}</a></li>)}
       </ul>
     </div>
   </div>
@@ -72,9 +70,9 @@ const agenda = (await getCollection('agenda'))
     <div class="wrap">
       <div class="beeld"><img src={foto.oproep} alt="" loading="lazy" /></div>
       <div>
-        <h2>Vrijwilligers gezocht</h2>
-        <p>Ben jij enthousiast, geef je goed leiding en vind je het leuk om kinderen en jongeren te begeleiden bij hun persoonlijke ontwikkeling? Of heb je misschien bestuurlijke kwaliteiten die je wilt inzetten? Dan zijn wij op zoek naar jou!</p>
-        <a class="knop" href="/leiding-worden/">Meld je aan</a>
+        <h2>{algemeen.oproep.titel}</h2>
+        <p>{algemeen.oproep.tekst}</p>
+        <a class="knop" href={algemeen.oproep.link}>{algemeen.oproep.knop}</a>
       </div>
     </div>
   </section>

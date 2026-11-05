@@ -181,6 +181,61 @@ collections:
           - { name: tenaamstelling, label: Ten name van, widget: string }
           - { name: body, label: Tekst, widget: markdown }
 
+  - name: algemeen
+    label: Algemene instellingen
+    files:
+      - name: algemeen
+        label: Footer, links en startpagina
+        file: src/data/algemeen.json
+        preview_path: /
+        fields:
+          - { name: adres, label: Adres, widget: string, required: false }
+          - { name: email, label: Algemeen e-mailadres, widget: string, hint: "Hier komen ook de berichten 'Algemene vraag' van het contactformulier binnen.", pattern: ['^[^@ ]+@[^@ ]+\.[^@ ]+$', 'Vul een geldig e-mailadres in'] }
+          - { name: facebook, label: Facebook-pagina, widget: string, required: false, pattern: ['^https://', 'Begin met https://'] }
+          - { name: instagram, label: Instagram-pagina, widget: string, required: false, pattern: ['^https://', 'Begin met https://'] }
+          - name: voetLinks
+            label: Links onderaan elke pagina
+            label_singular: link
+            widget: list
+            required: false
+            summary: "{{fields.tekst}}"
+            fields:
+              - { name: tekst, label: Tekst, widget: string }
+              - { name: link, label: Link, widget: string, hint: "Binnen de site begint een link met /, bijvoorbeeld /contact/. Een andere website begint met https://", pattern: ['^(/|https?://)', 'Begin met / of https://'] }
+          - name: snelNaar
+            label: Links bij "Snel naar" op de startpagina
+            label_singular: link
+            widget: list
+            required: false
+            summary: "{{fields.tekst}}"
+            fields:
+              - { name: tekst, label: Tekst, widget: string }
+              - { name: link, label: Link, widget: string, hint: "Binnen de site begint een link met /, bijvoorbeeld /contact/. Een andere website begint met https://", pattern: ['^(/|https?://)', 'Begin met / of https://'] }
+          - name: kolomKnoppen
+            label: Knoppen onder de kolommen op de startpagina
+            widget: object
+            fields:
+              - name: kolom1
+                label: Eerste kolom
+                widget: object
+                fields:
+                  - { name: tekst, label: Tekst op de knop, widget: string }
+                  - { name: link, label: Link, widget: string, hint: "Binnen de site begint een link met /, bijvoorbeeld /contact/. Een andere website begint met https://", pattern: ['^(/|https?://)', 'Begin met / of https://'] }
+              - name: kolom2
+                label: Tweede kolom
+                widget: object
+                fields:
+                  - { name: tekst, label: Tekst op de knop, widget: string }
+                  - { name: link, label: Link, widget: string, hint: "Binnen de site begint een link met /, bijvoorbeeld /contact/. Een andere website begint met https://", pattern: ['^(/|https?://)', 'Begin met / of https://'] }
+          - name: oproep
+            label: Groen blok "Vrijwilligers gezocht" op de startpagina
+            widget: object
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - { name: tekst, label: Tekst, widget: text }
+              - { name: knop, label: Tekst op de knop, widget: string }
+              - { name: link, label: Link, widget: string, hint: "Binnen de site begint een link met /, bijvoorbeeld /contact/. Een andere website begint met https://", pattern: ['^(/|https?://)', 'Begin met / of https://'] }
+
   - name: instellingen
     label: Website openbaar maken
     files:

@@ -7,6 +7,7 @@ import '@fontsource/roboto-slab/700.css';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import site from '../data/site.json';
+import algemeen from '../data/algemeen.json';
 import melding from '../data/melding.json';
 import Icoon from '../components/Icoon.astro';
 
@@ -78,9 +79,9 @@ const huidig = (aan: boolean) => (aan ? 'huidig' : undefined);
           <li class={huidig(actief('/nieuws/'))}><a href="/nieuws/">Nieuws</a></li>
           <li class={huidig(actief('/agenda/'))}><a href="/agenda/">Agenda</a></li>
           <li class={huidig(actief('/contact/'))}><a href="/contact/">Contact</a></li>
-          <li class="extra"><a href={`mailto:${site.email}`} title="Mail ons"><Icoon naam="envelope" /></a></li>
-          <li class="extra"><a href={site.facebook} rel="noopener" title="Facebook"><Icoon naam="facebook" /></a></li>
-          <li class="extra"><a href={site.instagram} rel="noopener" title="Instagram"><Icoon naam="instagram" /></a></li>
+          <li class="extra"><a href={`mailto:${algemeen.email}`} title="Mail ons"><Icoon naam="envelope" /></a></li>
+          {algemeen.facebook && <li class="extra"><a href={algemeen.facebook} title="Facebook"><Icoon naam="facebook" /></a></li>}
+          {algemeen.instagram && <li class="extra"><a href={algemeen.instagram} title="Instagram"><Icoon naam="instagram" /></a></li>}
           <li class="extra"><a href="/zoeken/" title="Zoeken"><Icoon naam="zoeken" /></a></li>
         </ul>
       </nav>
@@ -114,21 +115,18 @@ const huidig = (aan: boolean) => (aan ? 'huidig' : undefined);
         <div>
           <h2>Vind ons op</h2>
           <p class="social">
-            <a href={site.facebook} rel="noopener" title="Facebook"><Icoon naam="facebook" /></a>
-            <a href={site.instagram} rel="noopener" title="Instagram"><Icoon naam="instagram" /></a>
-            <a href={`mailto:${site.email}`} title="Mail ons"><Icoon naam="envelope" /></a>
+            {algemeen.facebook && <a href={algemeen.facebook} title="Facebook"><Icoon naam="facebook" /></a>}
+            {algemeen.instagram && <a href={algemeen.instagram} title="Instagram"><Icoon naam="instagram" /></a>}
+            <a href={`mailto:${algemeen.email}`} title="Mail ons"><Icoon naam="envelope" /></a>
           </p>
         </div>
         <ul>
-          <li><a href="/contact/">Contact</a></li>
-          <li><a href="/agenda/">Agenda</a></li>
-          <li><a href={`/${menu('lid-worden')[0]?.id}/`}>Lid worden</a></li>
-          <li><a href="https://www.scouting.nl" rel="noopener">Scouting Nederland</a></li>
+          {algemeen.voetLinks.map((l) => <li><a href={l.link}>{l.tekst}</a></li>)}
         </ul>
         <p class="adres">
           {site.naam}<br />
-          {site.adres}<br />
-          <a href={`mailto:${site.email}`}>{site.email}</a>
+          {algemeen.adres}<br />
+          <a href={`mailto:${algemeen.email}`}>{algemeen.email}</a>
         </p>
       </div>
       <p class="wrap copyright">Dit is de officiële website van {site.naam}.</p>

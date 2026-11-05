@@ -35,7 +35,9 @@ Zonder lokale Node kan het via Docker:
 | `src/content/speltakken/` | Bevers, Welpen, Verkenners, Rowans, Stam |
 | `src/content/paginas/` | Losse pagina's; het menu wordt automatisch opgebouwd uit `menu` en `order` |
 | `src/content/speciaal/` | Home, Contact, Contributie |
-| `src/data/site.json` | Adres, e-mail, sociale media en de coördinaten voor de kaart |
+| `src/data/algemeen.json` | Adres, e-mail, sociale media, links in de footer en bij "Snel naar" en de vaste teksten op de startpagina (in het beheer: "Algemene instellingen") |
+| `src/data/site.json` | Technische gegevens: naam, Turnstile-sitekey en coördinaten voor de kaart |
+| `integrations/externe-links.mjs` | Laat links naar andere websites in een nieuw tabblad openen |
 | `src/data/melding.json` | De melding bovenaan elke pagina (in het beheer: "Melding bovenaan de site") |
 | `integrations/fotos.mjs` | Maakt bij de build verkleinde WebP-versies (400/800/1600 px) van alle foto's in `/uploads/` en past de HTML daarop aan |
 | `public/uploads/` | Foto's en bestanden; `kaart-blokhut.png` is een vaste kaart van OpenStreetMap (bij verhuizing opnieuw maken) |

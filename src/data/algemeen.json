@@ -1,0 +1,58 @@
+{
+  "adres": "Geertruidenbergstraat 1, Eindhoven",
+  "email": "info@scoutingsintsebastiaan.nl",
+  "facebook": "https://www.facebook.com/ScoutingSintSebastiaan",
+  "instagram": "https://www.instagram.com/scoutingsintsebastiaan/",
+  "voetLinks": [
+    {
+      "tekst": "Contact",
+      "link": "/contact/"
+    },
+    {
+      "tekst": "Agenda",
+      "link": "/agenda/"
+    },
+    {
+      "tekst": "Lid worden",
+      "link": "/informatie/"
+    },
+    {
+      "tekst": "Scouting Nederland",
+      "link": "https://www.scouting.nl"
+    }
+  ],
+  "snelNaar": [
+    {
+      "tekst": "Agenda",
+      "link": "/agenda/"
+    },
+    {
+      "tekst": "Contributie",
+      "link": "/contributie/"
+    },
+    {
+      "tekst": "Contact",
+      "link": "/contact/"
+    },
+    {
+      "tekst": "Scouting Nederland",
+      "link": "https://www.scouting.nl"
+    }
+  ],
+  "kolomKnoppen": {
+    "kolom1": {
+      "tekst": "Meer info",
+      "link": "/ontdek-scouting-nederland/"
+    },
+    "kolom2": {
+      "tekst": "Kom een keer meedoen",
+      "link": "/informatie/"
+    }
+  },
+  "oproep": {
+    "titel": "Vrijwilligers gezocht",
+    "tekst": "Ben jij enthousiast, geef je goed leiding en vind je het leuk om kinderen en jongeren te begeleiden bij hun persoonlijke ontwikkeling? Of heb je misschien bestuurlijke kwaliteiten die je wilt inzetten? Dan zijn wij op zoek naar jou!",
+    "knop": "Meld je aan",
+    "link": "/leiding-worden/"
+  }
+}

@@ -1,5 +1,6 @@
 ---
 import site from '../data/site.json';
+import instellingen from '../data/algemeen.json';
 import { ontvangers } from '../lib/ontvangers';
 
 const lijst = await ontvangers();
@@ -13,7 +14,7 @@ const speltakken = lijst.filter((o) => o.speltak);
   <p class="melding goed" data-melding="verzonden" hidden>Bedankt! Je bericht is verstuurd. We reageren zo snel mogelijk.</p>
   <p class="melding fout" data-melding="onvolledig" hidden>Vul je naam, een geldig e-mailadres en je bericht in.</p>
   <p class="melding fout" data-melding="controle" hidden>De controle tegen spam is mislukt. Probeer het nog een keer.</p>
-  <p class="melding fout" data-melding="fout" hidden>Er ging iets mis bij het versturen. Probeer het later nog eens, of mail ons via <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  <p class="melding fout" data-melding="fout" hidden>Er ging iets mis bij het versturen. Probeer het later nog eens, of mail ons via <a href={`mailto:${instellingen.email}`}>{instellingen.email}</a>.</p>
 
   <form method="post" action="/api/contact">
     <label>

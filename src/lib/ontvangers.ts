@@ -1,5 +1,5 @@
 import { getCollection, getEntry } from 'astro:content';
-import site from '../data/site.json';
+import algemeen from '../data/algemeen.json';
 
 export interface Ontvanger {
   id: string;
@@ -14,8 +14,8 @@ export async function ontvangers(): Promise<Ontvanger[]> {
   const secretaris = contact?.data.bestuur?.find((p) => p.functie.toLowerCase() === 'secretaris')?.email;
   const speltakken = (await getCollection('speltakken')).sort((a, b) => a.data.order - b.data.order);
   return [
-    { id: 'algemeen', label: 'Algemene vraag', email: site.email },
-    { id: 'lid-worden', label: 'Lid worden', email: secretaris || site.email },
+    { id: 'algemeen', label: 'Algemene vraag', email: algemeen.email },
+    { id: 'lid-worden', label: 'Lid worden', email: secretaris || algemeen.email },
     ...speltakken
       .filter((s) => s.data.email)
       .map((s) => ({ id: s.id, label: s.data.title, email: s.data.email!, speltak: true })),
