@@ -1,9 +1,10 @@
 // Controleert de eigen HTML onder Geavanceerd. Kapotte of niet-toegestane HTML wordt overgeslagen:
 // dat blok toont dan de normale versie, en de rest van de site wordt gewoon bijgewerkt.
-import { readFileSync } from 'node:fs';
+import { readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { HtmlValidate } from 'html-validate';
 
 const BRON = new URL('../src/data/geavanceerd.json', import.meta.url);
+const MELDINGEN = new URL('../.geavanceerd-meldingen.json', import.meta.url);
 const MODULE = 'virtual:geavanceerd';
 const VELDEN = ['footer', 'snelNaar', 'oproep'];
 
@@ -37,6 +38,7 @@ export default function controleerEigenHtml() {
     name: 'controleer-html',
     hooks: {
       'astro:config:setup': ({ updateConfig, logger }) => {
+        rmSync(MELDINGEN, { force: true });
         updateConfig({
           vite: {
             plugins: [
@@ -48,6 +50,7 @@ export default function controleerEigenHtml() {
                   const data = JSON.parse(readFileSync(BRON, 'utf8'));
                   const fouten = await controleerHtml(Object.fromEntries(VELDEN.map((v) => [v, data[v]])));
                   const schoon = Object.fromEntries(VELDEN.map((v) => [v, fouten.some((f) => f.veld === v) ? '' : (data[v] ?? '')]));
+                  if (fouten.length) writeFileSync(MELDINGEN, JSON.stringify(fouten, null, 2));
                   for (const f of fouten) logger.warn(`Geavanceerd, ${f.veld} overgeslagen (normale versie getoond): ${f.melding}`);
                   return `export default ${JSON.stringify(schoon)};`;
                 },
