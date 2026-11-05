@@ -13,12 +13,17 @@ Voor de verschillende leeftijdsgroepen zijn er bij Scouting zogenaamde speltakke
 - [Verkenners](/groepen/verkenners/) 11 - 15 jaar
 - [Rowans](/groepen/rowans/) 15 - 19 jaar
 - [Stam](/groepen/stam/) 18 jaar en ouder
-- Wil je lid worden, let dan op het volgende:
+
+### Wil je lid worden, let dan op het volgende:
+
 - Je kunt 4 keer komen kijken, daarna besluit je of je lid wil worden. Word je geen lid, dan kun je niet meer komen; je betaalt dan namelijk geen contributie.
 - Het lidmaatschap gaat in vanaf de eerstvolgende draaidag en je betaalt dan ook [contributie](/contributie/)
 - Als je lid bent, dan verwacht de leiding dat je er iedere opkomst bij bent. Als je een keertje niet kunt, moet je je altijd afmelden bij de leiding.
 - Als je lid bent, wordt er een datum gepland voor de installatie. Na de installatie mag je dan ook echt je [Scoutfit](/scoutfit/) dragen. Ook hebben we een eigen "basje" shirt voor onder de scoutfit. Ideaal voor de warme dagen.
-- Op het moment dat je lid bent van onze groep, ben je automatisch lid van Scouting Nederland. Dit lidmaatschap is voor iedere scout in Nederland hetzelfde. Als lid van Scouting...
+- Op het moment dat je lid bent van onze groep, ben je automatisch lid van Scouting Nederland. 
+
+### Dit lidmaatschap is voor iedere scout in Nederland hetzelfde. Als lid van Scouting...
+
 - beleef je uitdagende activiteiten!
 - ontmoet je nieuwe vrienden!
 - kampeer je tegen sterk gereduceerde prijzen in mooie natuurgebieden!
