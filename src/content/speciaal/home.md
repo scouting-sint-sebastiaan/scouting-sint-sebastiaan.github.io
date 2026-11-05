@@ -3,7 +3,7 @@ title: Welkom bij Scouting St. Sebastiaan
 menu: geen
 order: 0
 fotos:
-  banner: /uploads/start-banner.jpg
+  banner: /uploads/WhatsApp Image 2026-11-05 at 13.47.49.jpeg
   kolom1: /uploads/start-kolom1.jpg
   kolom2: /uploads/start-kolom2.jpg
   snel: /uploads/start-snel-naar.jpg
