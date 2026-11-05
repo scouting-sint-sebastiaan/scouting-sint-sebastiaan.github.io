@@ -237,21 +237,21 @@ collections:
 
   - name: geavanceerd
     label: "⚠️ Geavanceerd (HTML)"
-    description: "⛔ Alleen voor wie HTML kent. Fouten hier kunnen op elke pagina zichtbaar worden."
+    description: "Alleen voor wie HTML kent. Gaat er iets mis? Maak de velden leeg en sla op."
     files:
       - name: geavanceerd
-        label: "⛔ Eigen HTML: op eigen risico"
+        label: "Eigen HTML"
         file: src/data/geavanceerd.json
         preview_path: /
         fields:
           - name: bevestiging
-            label: "⛔ PAS OP: een fout hier kan op elke pagina zichtbaar worden. Typ ter bevestiging: OK"
+            label: "Let op: een fout hier is op elke pagina te zien. Typ ter bevestiging: OK"
             widget: string
-            hint: "Kapotte HTML (bijvoorbeeld een tag die niet wordt gesloten) komt niet online: dan blijft de vorige versie staan, en bij de updates op GitHub verschijnt een rood kruisje. HTML die wel klopt maar er verkeerd uitziet wordt NIET tegengehouden en staat binnen een minuut online, op elke pagina. Twijfel je? Laat dit onderdeel dan liever met rust. Een veld leeg = de normale versie uit Algemene instellingen. Een ingevuld veld vervangt dat blok helemaal, en de normale velden van dat blok doen dan niets meer."
+            hint: "Gaat er iets mis? Maak de velden hieronder leeg en klik op Opslaan. Binnen een minuut staat de normale versie er weer. Een leeg veld toont de normale versie uit Algemene instellingen; een ingevuld veld vervangt dat blok helemaal, en de normale velden van dat blok doen dan niets meer. Kapotte HTML (bijvoorbeeld een tag die niet wordt gesloten) komt niet online: dan blijft de vorige versie staan, maar komen ook andere wijzigingen niet online totdat het veld is hersteld."
             pattern: ['^[Oo][Kk]$', 'Typ OK om te bevestigen']
-          - { name: footer, label: "⚠️ Footer: eigen HTML (leeg = de normale footer)", hint: "Vervangt de hele inhoud van de footer, op elke pagina.", widget: code, default_language: html, allow_language_selection: false, output_code_only: true, required: false }
-          - { name: snelNaar, label: "⚠️ Snel naar: eigen HTML (leeg = de normale links)", hint: "Vervangt de lijst met links op de startpagina.", widget: code, default_language: html, allow_language_selection: false, output_code_only: true, required: false }
-          - { name: oproep, label: "⚠️ Vrijwilligers gezocht: eigen HTML (leeg = het normale blok)", hint: "Vervangt de titel, tekst en knop op de startpagina. De afbeelding blijft staan.", widget: code, default_language: html, allow_language_selection: false, output_code_only: true, required: false }
+          - { name: footer, label: "Footer: eigen HTML (leeg = de normale footer)", hint: "Vervangt de hele inhoud van de footer, op elke pagina.", widget: code, default_language: html, allow_language_selection: false, output_code_only: true, required: false }
+          - { name: snelNaar, label: "Snel naar: eigen HTML (leeg = de normale links)", hint: "Vervangt de lijst met links op de startpagina.", widget: code, default_language: html, allow_language_selection: false, output_code_only: true, required: false }
+          - { name: oproep, label: "Vrijwilligers gezocht: eigen HTML (leeg = het normale blok)", hint: "Vervangt de titel, tekst en knop op de startpagina. De afbeelding blijft staan.", widget: code, default_language: html, allow_language_selection: false, output_code_only: true, required: false }
 
   - name: instellingen
     label: Website openbaar maken
