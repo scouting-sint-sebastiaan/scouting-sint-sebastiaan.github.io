@@ -8,8 +8,8 @@ backend:
 
 site_url: https://www.scoutingsintsebastiaan.nl
 display_url: https://www.scoutingsintsebastiaan.nl
-logo_url: /uploads/logo-basje.png
-locale: nl
+logo:
+  src: /uploads/logo-basje.png
 
 media_folder: public/uploads
 public_folder: /uploads
@@ -66,7 +66,7 @@ collections:
         display_fields: [title]
         multiple: true
         required: false
-      - { name: wie, label: Voor wie (optioneel extra tekst, bijvoorbeeld Ouders), widget: string, required: false }
+      - { name: wie, label: "Voor wie (optioneel extra tekst, bijvoorbeeld Ouders)", widget: string, required: false }
       - { name: body, label: Meer informatie, widget: markdown, required: false }
 
   - name: speltakken
@@ -175,7 +175,7 @@ collections:
             summary: "{{fields.speltak}}: {{fields.bedrag}}"
             fields:
               - { name: speltak, label: Speltak, widget: string }
-              - { name: bedrag, label: Bedrag (bijvoorbeeld 30,-), widget: string }
+              - { name: bedrag, label: "Bedrag (bijvoorbeeld 30,-)", widget: string }
           - { name: iban, label: IBAN, widget: string }
           - { name: tenaamstelling, label: Ten name van, widget: string }
           - { name: body, label: Tekst, widget: markdown }
