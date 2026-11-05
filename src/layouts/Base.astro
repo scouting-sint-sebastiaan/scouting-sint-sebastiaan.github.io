@@ -8,6 +8,7 @@ import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import site from '../data/site.json';
 import algemeen from '../data/algemeen.json';
+import geavanceerd from '../data/geavanceerd.json';
 import melding from '../data/melding.json';
 import Icoon from '../components/Icoon.astro';
 
@@ -111,6 +112,8 @@ const huidig = (aan: boolean) => (aan ? 'huidig' : undefined);
     </main>
 
     <footer id="voet">
+      {geavanceerd.footer.trim() ? <Fragment set:html={geavanceerd.footer} /> : (
+        <>
       <div class="wrap voet-in">
         <div>
           <h2>Vind ons op</h2>
@@ -130,6 +133,8 @@ const huidig = (aan: boolean) => (aan ? 'huidig' : undefined);
         </p>
       </div>
       <p class="wrap copyright">Dit is de officiële website van {site.naam}.</p>
+        </>
+      )}
     </footer>
     <script is:inline>
       (() => {

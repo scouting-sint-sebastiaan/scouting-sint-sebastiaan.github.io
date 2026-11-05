@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 import NieuwsKaart from '../components/NieuwsKaart.astro';
 import { korteDatum, isoDag } from '../lib/format';
 import algemeen from '../data/algemeen.json';
+import geavanceerd from '../data/geavanceerd.json';
 
 const home = await getEntry('speciaal', 'home');
 const { Content } = await render(home!);
@@ -60,9 +61,11 @@ const agenda = (await getCollection('agenda'))
     <div>
       <h2>Snel naar</h2>
       <div class="beeld" style={`background-image: url('${foto.snel}')`}></div>
+      {geavanceerd.snelNaar.trim() ? <Fragment set:html={geavanceerd.snelNaar} /> : (
       <ul class="snel">
         {algemeen.snelNaar.map((l) => <li><a href={l.link}>{l.tekst}</a></li>)}
       </ul>
+      )}
     </div>
   </div>
 
@@ -70,9 +73,13 @@ const agenda = (await getCollection('agenda'))
     <div class="wrap">
       <div class="beeld"><img src={foto.oproep} alt="" loading="lazy" /></div>
       <div>
+        {geavanceerd.oproep.trim() ? <Fragment set:html={geavanceerd.oproep} /> : (
+          <>
         <h2>{algemeen.oproep.titel}</h2>
         <p>{algemeen.oproep.tekst}</p>
         <a class="knop" href={algemeen.oproep.link}>{algemeen.oproep.knop}</a>
+          </>
+        )}
       </div>
     </div>
   </section>
