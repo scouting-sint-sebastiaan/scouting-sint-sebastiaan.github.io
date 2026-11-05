@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { defineConfig } from 'astro/config';
 import fotos from './integrations/fotos.mjs';
 import externeLinks from './integrations/externe-links.mjs';
+import htmlVoorbeelden from './integrations/html-voorbeelden.mjs';
 import controleerEigenHtml from './integrations/controleer-html.mjs';
 import cmsVoorbeeld from './integrations/cms-voorbeeld.mjs';
 import zoeken from './integrations/zoeken.mjs';
@@ -24,5 +25,5 @@ export default defineConfig({
   site: 'https://www.scoutingsintsebastiaan.nl',
   trailingSlash: 'always',
   build: { format: 'directory' },
-  integrations: [controleerEigenHtml(), externeLinks(), fotos(), cmsVoorbeeld(), zoeken(), pagesRoutes],
+  integrations: [controleerEigenHtml(), externeLinks(), htmlVoorbeelden(), fotos(), cmsVoorbeeld(), zoeken(), pagesRoutes],
 });

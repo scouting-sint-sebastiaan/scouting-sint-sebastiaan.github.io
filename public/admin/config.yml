@@ -6,8 +6,7 @@ backend:
   base_url: https://scouting-sint-sebastiaan.pages.dev
   auth_methods: [oauth]
 
-# Links "bekijk op de site" gaan naar preview., dat altijd hetzelfde toont als main (ook vóór livegang)
-site_url: https://preview.scoutingsintsebastiaan.nl
+site_url: https://www.scoutingsintsebastiaan.nl
 display_url: https://www.scoutingsintsebastiaan.nl
 logo_url: /uploads/logo-basje.png
 locale: nl

@@ -38,6 +38,7 @@ Zonder lokale Node kan het via Docker:
 | `src/data/algemeen.json` | Adres, e-mail, sociale media, links in de footer en bij "Snel naar" en de vaste teksten op de startpagina (in het beheer: "Algemene instellingen") |
 | `src/data/site.json` | Technische gegevens: naam, Turnstile-sitekey en coördinaten voor de kaart |
 | `src/data/geavanceerd.json` | Eigen HTML die de footer, "Snel naar" of "Vrijwilligers gezocht" vervangt (in het beheer: "Geavanceerd"); leeg = de normale versie. `integrations/controleer-html.mjs` laat de build mislukken op kapotte HTML; of het er goed uitziet wordt niet gecontroleerd |
+| `integrations/html-voorbeelden.mjs` | Zet de huidige HTML van de vervangbare blokken als kopieerbaar voorbeeld in de handleiding |
 | `integrations/externe-links.mjs` | Laat links naar andere websites in een nieuw tabblad openen |
 | `src/data/melding.json` | De melding bovenaan elke pagina (in het beheer: "Melding bovenaan de site") |
 | `integrations/fotos.mjs` | Maakt bij de build verkleinde WebP-versies (400/800/1600 px) van alle foto's in `/uploads/` en past de HTML daarop aan |
@@ -48,7 +49,7 @@ Zonder lokale Node kan het via Docker:
 
 De volledige handleiding met schermafbeeldingen en filmpjes staat op `/handleiding/`.
 
-1. Ga naar `https://www.scoutingsintsebastiaan.nl/admin/` (tot de livegang: `https://preview.scoutingsintsebastiaan.nl/admin/`) en log in.
+1. Ga naar `https://www.scoutingsintsebastiaan.nl/admin/` en log in.
 2. Kies links wat je wilt aanpassen: **Nieuws**, **Agenda**, **Speltakken**, **Pagina's** of **Contact, contributie en home**.
 3. Pas de tekst aan, of kies "Nieuw" om iets toe te voegen. Foto's kun je slepen naar het afbeeldingsveld. Rechts zie je een voorbeeld in de stijl van de site.
 4. Klik op **Opslaan**. Na ongeveer een minuut staat de wijziging op de site; met **Bekijken op de live site** open je de pagina.
@@ -62,4 +63,3 @@ Let op: alles wat je publiceert is openbaar. Zet geen foto's van kinderen online
 ## Bekende aandachtspunten
 
 - De inhoud is overgenomen uit het archief van de oude site (juni 2026). Veel oorspronkelijke foto's waren niet gearchiveerd en ontbreken (o.a. de foto uit 1981 en de Scoutfit-foto's).
-- Het voorbeeldnieuwsbericht en het voorbeeld in de agenda mogen verwijderd worden.
