@@ -237,7 +237,7 @@ collections:
 
   - name: geavanceerd
     label: "⚠️ Geavanceerd (HTML)"
-    description: "⛔ Alleen voor wie HTML kent. Hier kun je de hele website kapotmaken."
+    description: "⛔ Alleen voor wie HTML kent. Fouten hier kunnen op elke pagina zichtbaar worden."
     files:
       - name: geavanceerd
         label: "⛔ Eigen HTML: op eigen risico"
@@ -245,7 +245,7 @@ collections:
         preview_path: /
         fields:
           - name: bevestiging
-            label: "⛔ PAS OP: HIER KUN JE DE HELE WEBSITE KAPOTMAKEN. Typ ter bevestiging: OK"
+            label: "⛔ PAS OP: een fout hier kan op elke pagina zichtbaar worden. Typ ter bevestiging: OK"
             widget: string
             hint: "Kapotte HTML (bijvoorbeeld een tag die niet wordt gesloten) komt niet online: dan blijft de vorige versie staan, en bij de updates op GitHub verschijnt een rood kruisje. HTML die wel klopt maar er verkeerd uitziet wordt NIET tegengehouden en staat binnen een minuut online, op elke pagina. Twijfel je? Laat dit onderdeel dan liever met rust. Een veld leeg = de normale versie uit Algemene instellingen. Een ingevuld veld vervangt dat blok helemaal, en de normale velden van dat blok doen dan niets meer."
             pattern: ['^[Oo][Kk]$', 'Typ OK om te bevestigen']
