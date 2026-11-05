@@ -11,6 +11,7 @@ const delen = [
   ['speltakken', 'De speltakken aanpassen'],
   ['paginas', "Pagina's en het menu"],
   ['vaste', 'Contact, contributie en de startpagina'],
+  ['algemeen', 'Algemene instellingen'],
   ['fotos', "Foto's"],
   ['aanpassen', 'Iets verwijderen of terugvinden'],
   ['formulier', 'Het contactformulier'],
@@ -164,6 +165,20 @@ const pst = (n: string) => `/handleiding/${n}-poster.webp`;
         <p>De tekst staat onderaan bij <strong>Tekst</strong>. De koppen <em>Wat is Scouting?</em> en <em>Lid worden</em> worden de twee kolommen bovenaan de startpagina; laat die koppen dus staan.</p>
         <p>Wil je een foto vervangen? Klik op het kleine pijltje in de grijze balk bij <strong>Foto's op de startpagina</strong>. Dan zie je alle foto's.</p>
         <figure><img src={img('53-home')} alt="De startpagina in het beheer" loading="lazy" /></figure>
+      </section>
+
+      <section id="algemeen">
+        <h2>Algemene instellingen</h2>
+        <p>Klik links op <strong>Algemene instellingen</strong> en dan op <strong>Footer, links en startpagina</strong>. Hier pas je dingen aan die op meerdere plekken op de site staan:</p>
+        <ul>
+          <li>het adres, het algemene e-mailadres en de links naar Facebook en Instagram;</li>
+          <li>de links onderaan elke pagina en bij <em>Snel naar</em> op de startpagina;</li>
+          <li>de knoppen onder de kolommen op de startpagina;</li>
+          <li>de titel, tekst en knop van het groene blok <em>Vrijwilligers gezocht</em>.</li>
+        </ul>
+        <figure><img src={img('55-algemeen')} alt="De algemene instellingen in het beheer" loading="lazy" /></figure>
+        <p>Een link binnen de site begint met <strong>/</strong>, bijvoorbeeld <em>/contact/</em>. Een link naar een andere website begint met <strong>https://</strong>. Die opent vanzelf in een nieuw tabblad, ook als je hem in een tekst zet.</p>
+        <p class="let-op"><strong>Let op:</strong> op het algemene e-mailadres komen ook de berichten <em>Algemene vraag</em> van het contactformulier binnen. Controleer na een wijziging of dat adres werkt.</p>
       </section>
 
       <section id="fotos">
