@@ -1,20 +1,33 @@
-// Laat de build mislukken op kapotte eigen HTML, zodat de live site op de vorige versie blijft staan.
+// Controleert de eigen HTML onder Geavanceerd. Kapotte of niet-toegestane HTML wordt overgeslagen:
+// dat blok toont dan de normale versie, en de rest van de site wordt gewoon bijgewerkt.
 import { readFileSync } from 'node:fs';
 import { HtmlValidate } from 'html-validate';
+
+const BRON = new URL('../src/data/geavanceerd.json', import.meta.url);
+const MODULE = 'virtual:geavanceerd';
+const VELDEN = ['footer', 'snelNaar', 'oproep'];
 
 const validator = new HtmlValidate({
   root: true,
   rules: { 'close-order': 'error', 'close-attr': 'error', 'no-dup-attr': 'error' },
 });
 
+const VERBODEN = [
+  [/<\s*(script|style|iframe|link|object|embed|frame|frameset)\b/i, (m) => `<${m[1].toLowerCase()}> is niet toegestaan`],
+  [/\son[a-z]+\s*=/i, () => 'attributen als onclick= zijn niet toegestaan'],
+  [/(href|src|action)\s*=\s*["']?\s*javascript:/i, () => 'javascript:-links zijn niet toegestaan'],
+];
+
 export async function controleerHtml(velden) {
   const fouten = [];
   for (const [veld, html] of Object.entries(velden)) {
     if (!html?.trim()) continue;
-    const { results } = await validator.validateString(html);
-    for (const r of results) {
-      for (const m of r.messages) fouten.push(`${veld}, regel ${m.line}: ${m.message}`);
+    for (const [patroon, melding] of VERBODEN) {
+      const m = html.match(patroon);
+      if (m) fouten.push({ veld, melding: melding(m) });
     }
+    const { results } = await validator.validateString(html);
+    for (const r of results) for (const m of r.messages) fouten.push({ veld, melding: `regel ${m.line}: ${m.message}` });
   }
   return fouten;
 }
@@ -23,10 +36,25 @@ export default function controleerEigenHtml() {
   return {
     name: 'controleer-html',
     hooks: {
-      'astro:build:start': async () => {
-        const { footer, snelNaar, oproep } = JSON.parse(readFileSync(new URL('../src/data/geavanceerd.json', import.meta.url), 'utf8'));
-        const fouten = await controleerHtml({ footer, snelNaar, oproep });
-        if (fouten.length) throw new Error(`Kapotte eigen HTML onder Geavanceerd:\n${fouten.join('\n')}`);
+      'astro:config:setup': ({ updateConfig, logger }) => {
+        updateConfig({
+          vite: {
+            plugins: [
+              {
+                name: 'geavanceerd-gecontroleerd',
+                resolveId: (id) => (id === MODULE ? `\0${MODULE}` : undefined),
+                load: async (id) => {
+                  if (id !== `\0${MODULE}`) return undefined;
+                  const data = JSON.parse(readFileSync(BRON, 'utf8'));
+                  const fouten = await controleerHtml(Object.fromEntries(VELDEN.map((v) => [v, data[v]])));
+                  const schoon = Object.fromEntries(VELDEN.map((v) => [v, fouten.some((f) => f.veld === v) ? '' : (data[v] ?? '')]));
+                  for (const f of fouten) logger.warn(`Geavanceerd, ${f.veld} overgeslagen (normale versie getoond): ${f.melding}`);
+                  return `export default ${JSON.stringify(schoon)};`;
+                },
+              },
+            ],
+          },
+        });
       },
     },
   };

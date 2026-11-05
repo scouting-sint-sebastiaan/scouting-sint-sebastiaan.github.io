@@ -37,7 +37,7 @@ Zonder lokale Node kan het via Docker:
 | `src/content/speciaal/` | Home, Contact, Contributie |
 | `src/data/algemeen.json` | Adres, e-mail, sociale media, links in de footer en bij "Snel naar" en de vaste teksten op de startpagina (in het beheer: "Algemene instellingen") |
 | `src/data/site.json` | Technische gegevens: naam, Turnstile-sitekey en coördinaten voor de kaart |
-| `src/data/geavanceerd.json` | Eigen HTML die de footer, "Snel naar" of "Vrijwilligers gezocht" vervangt (in het beheer: "Geavanceerd"); leeg = de normale versie. `integrations/controleer-html.mjs` laat de build mislukken op kapotte HTML; of het er goed uitziet wordt niet gecontroleerd |
+| `src/data/geavanceerd.json` | Eigen HTML die de footer, "Snel naar" of "Vrijwilligers gezocht" vervangt (in het beheer: "Geavanceerd"); leeg = de normale versie. `integrations/controleer-html.mjs` slaat kapotte HTML en `<script>`, `<style>`, `<iframe>` e.d. over (dat blok toont dan de normale versie, met een waarschuwing in de build-log); of het er goed uitziet wordt niet gecontroleerd |
 | `integrations/html-voorbeelden.mjs` | Zet de huidige HTML van de vervangbare blokken als kopieerbaar voorbeeld in de handleiding |
 | `integrations/externe-links.mjs` | Laat links naar andere websites in een nieuw tabblad openen |
 | `src/data/melding.json` | De melding bovenaan elke pagina (in het beheer: "Melding bovenaan de site") |
