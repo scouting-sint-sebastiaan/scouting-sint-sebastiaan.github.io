@@ -15,6 +15,7 @@ const delen = [
   ['fotos', "Foto's"],
   ['aanpassen', 'Iets verwijderen of terugvinden'],
   ['formulier', 'Het contactformulier'],
+  ['toegang', 'Iemand anders toegang geven'],
   ['hulp', 'Als iets niet lukt'],
   ['accounts', 'Welke diensten gebruiken we?'],
 ];
@@ -212,6 +213,26 @@ const pst = (n: string) => `/handleiding/${n}-poster.webp`;
         </table>
         <p>Van elk bericht komt voorlopig ook een kopie binnen op <strong>tech@</strong>. Met <em>Beantwoorden</em> stuur je je antwoord rechtstreeks naar de bezoeker.</p>
         <figure><img src={img('91-site-contact')} alt="Het contactformulier op de website" loading="lazy" /></figure>
+      </section>
+
+      <section id="toegang">
+        <h2>Iemand anders toegang geven</h2>
+        <p>Wil je dat iemand anders ook de website kan aanpassen? Dat kan met een eigen, gratis GitHub-account. Deel je eigen inloggegevens niet: met een eigen account is ook te zien wie wat heeft aangepast.</p>
+        <h3>Iemand toevoegen</h3>
+        <ol>
+          <li>Vraag de ander om een account aan te maken op <a href="https://github.com/signup">github.com</a> en jou de gebruikersnaam te sturen.</li>
+          <li>Log in op GitHub met het beheer-account en ga naar <a href="https://github.com/scouting-sint-sebastiaan/scouting-sint-sebastiaan.github.io/settings/access">de pagina met toegang</a>.</li>
+          <li>Klik op <strong>Add people</strong>, typ de gebruikersnaam en klik op de juiste persoon. Dat de persoon <em>Invite outside collaborator</em> heet, is normaal.</li>
+          <li>Kies de rol <strong>Write</strong> en klik op de groene knop <strong>Add selection</strong>.</li>
+          <li>De ander krijgt een mail van GitHub en klikt daarin op de knop om de uitnodiging te accepteren. Dat moet binnen 7 dagen. Lukt dat niet, stuur dan een nieuwe uitnodiging.</li>
+          <li>Daarna kan de ander inloggen op het beheer, zoals beschreven bij <a href="#inloggen">Inloggen</a>.</li>
+        </ol>
+        <figure><img src={img('96-github-toegang')} alt="De pagina met toegang op GitHub, met rechts de knop Add people" loading="lazy" /></figure>
+        <figure><img src={img('97-github-zoeken')} alt="Een gebruikersnaam zoeken na het klikken op Add people" loading="lazy" /></figure>
+        <figure><img src={img('98-github-rol')} alt="De rol kiezen, met onderaan de knop Add selection" loading="lazy" /></figure>
+        <p class="let-op"><strong>Kies geen Admin,</strong> tenzij die persoon ook anderen moet kunnen toevoegen of verwijderen.</p>
+        <h3>Iemand verwijderen</h3>
+        <p>Ga naar dezelfde pagina, kies het tabblad <strong>Direct access</strong> en klik bij de naam op <strong>Remove</strong>. De teksten en foto's van die persoon blijven gewoon op de site staan.</p>
       </section>
 
       <section id="hulp">
