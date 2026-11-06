@@ -10,6 +10,15 @@
       section[data-key-path='bevestiging'] label, section[data-key-path='bevestiging'] h4 { color: #6b4a00; font-weight: 700; }
       section[data-key-path='uitleg'] > header, section[data-key-path='uitleg'] > .field-wrapper { display: none !important; }
     </style>
+    <script>
+      // De CMS-hints staan geen target toe; zo blijft wat je aan het typen bent staan.
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest?.("section[data-key-path='uitleg'] a[href^='https://']");
+        if (!a) return;
+        e.preventDefault();
+        window.open(a.href, '_blank', 'noopener');
+      }, true);
+    </script>
   </head>
   <body>
     <script src="https://unpkg.com/@sveltia/cms@0.260.0/dist/sveltia-cms.js"></script>

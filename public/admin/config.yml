@@ -255,6 +255,8 @@ collections:
             required: false
             preview: false
             hint: >-
+              **Waar begin je?**
+              Een ingevuld veld vervangt het hele blok. Kopieer daarom de huidige HTML uit de [handleiding](https://www.scoutingsintsebastiaan.nl/handleiding/#voorbeelden), onder "Voor wie HTML kent: voorbeelden om mee te beginnen". Plak die in het veld en pas alleen aan wat je wilt veranderen.<br><br>
               **Wat gebeurt er na het opslaan?**
               Na ongeveer een minuut staat je HTML op de site. Controleer het resultaat even op de live site.<br><br>
               **Zie je je wijziging niet online?**
