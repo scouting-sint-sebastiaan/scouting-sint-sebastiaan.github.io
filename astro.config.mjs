@@ -6,6 +6,7 @@ import htmlVoorbeelden from './integrations/html-voorbeelden.mjs';
 import controleerEigenHtml from './integrations/controleer-html.mjs';
 import cmsVoorbeeld from './integrations/cms-voorbeeld.mjs';
 import zoeken from './integrations/zoeken.mjs';
+import previewDoorsturen from './integrations/preview-doorsturen.mjs';
 
 // Vóór livegang loopt elke pagina via functions/_middleware.js; daarna alleen de echte Function-routes.
 const pagesRoutes = {
@@ -25,5 +26,5 @@ export default defineConfig({
   site: 'https://www.scoutingsintsebastiaan.nl',
   trailingSlash: 'always',
   build: { format: 'directory' },
-  integrations: [controleerEigenHtml(), externeLinks(), htmlVoorbeelden(), fotos(), cmsVoorbeeld(), zoeken(), pagesRoutes],
+  integrations: [controleerEigenHtml(), externeLinks(), htmlVoorbeelden(), fotos(), cmsVoorbeeld(), zoeken(), previewDoorsturen(), pagesRoutes],
 });
